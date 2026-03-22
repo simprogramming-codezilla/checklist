@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Checklist e-fólio A — CodeZilla</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#ededea;
+  --text:#1a1a18;--text2:#5a5a56;--text3:#9a9a94;
+  --border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.18);
+  --g-bg:#EAF3DE;--g-tx:#27500A;--g-br:#97C459;
+  --a-bg:#FAEEDA;--a-tx:#633806;--a-br:#EF9F27;
+  --r-bg:#FCEBEB;--r-tx:#791F1F;--r-br:#E24B4A;
+  --b-bg:#E6F1FB;--b-tx:#0C447C;--b-br:#85B7EB;
+  --rad:10px;--rad-s:7px;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1e1e1c;--bg2:#252523;--bg3:#2e2e2c;
+  --text:#e8e8e2;--text2:#a0a09a;--text3:#686862;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.18);
+  --g-bg:#173404;--g-tx:#C0DD97;--g-br:#3B6D11;
+  --a-bg:#412402;--a-tx:#FAC775;--a-br:#854F0B;
+  --r-bg:#501313;--r-tx:#F7C1C1;--r-br:#A32D2D;
+  --b-bg:#042C53;--b-tx:#B5D4F4;--b-br:#185FA5;
+}}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:14px;background:var(--bg2);color:var(--text);min-height:100vh;padding-bottom:4rem}
+.hdr{background:#1F3864;color:#fff;padding:14px 20px}
+.hdr-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hdr h1{font-size:16px;font-weight:600;margin-bottom:2px}
+.hdr p{font-size:12px;opacity:.7}
+.upd{font-size:11px;opacity:.55;margin-top:4px;text-align:right}
+.main{max-width:900px;margin:0 auto;padding:14px 14px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);padding:10px 12px}
+.stat .lbl{font-size:11px;color:var(--text3);margin-bottom:3px}
+.stat .val{font-size:22px;font-weight:600;line-height:1}
+.vg{color:var(--g-tx)}.va{color:var(--a-tx)}.vb{color:var(--b-tx)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;padding:8px 12px;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);font-size:12px;color:var(--text2)}
+.leg-item{display:flex;align-items:center;gap:6px}
+.prog-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);padding:10px 14px;margin-bottom:12px}
+.prog-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px}
+.prog-track{height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;display:flex}
+.prog-seg{height:100%;transition:width .5s ease}
+.prog-done{background:#3B6D11}.prog-prog{background:#EF9F27}
+.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.pill{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.pill:hover{background:var(--bg3)}
+.pill.active{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
+.spacer{flex:1}
+.lbtn{font-size:12px;padding:5px 13px;border-radius:var(--rad-s);border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .15s}
+.lbtn:hover{background:var(--bg3)}
+.lbtn.on{border-color:var(--g-br);color:var(--g-tx);background:var(--g-bg)}
+.lbtn svg{width:13px;height:13px;flex-shrink:0}
+.sec-hdr{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:14px 0 5px;border-bottom:0.5px solid var(--border);margin-bottom:2px}
+.task{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:10px;padding:9px 6px;border-bottom:0.5px solid var(--border);transition:background .1s}
+.task:hover{background:var(--bg3)}
+.task.hidden{display:none}
+.tname{font-size:13px;line-height:1.4;color:var(--text)}
+.task.st-done .tname{text-decoration:line-through;color:var(--text3)}
+.state-sel{display:flex;border:0.5px solid var(--border2);border-radius:6px;overflow:hidden;flex-shrink:0}
+.state-sel button{font-size:11px;padding:3px 9px;border:none;background:transparent;cursor:pointer;color:var(--text2);transition:background .12s,color .12s;white-space:nowrap;border-right:0.5px solid var(--border2)}
+.state-sel button:last-child{border-right:none}
+.state-sel button:hover{background:var(--bg3)}
+.state-sel button.s-todo.active{background:var(--bg3);color:var(--text)}
+.state-sel button.s-prog.active{background:var(--a-bg);color:var(--a-tx)}
+.state-sel button.s-done.active{background:var(--g-bg);color:var(--g-tx)}
+.state-sel.locked button{cursor:default;opacity:.45;pointer-events:none}
+.badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;border:0.5px solid;white-space:nowrap;flex-shrink:0}
+.bl{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
+.be{background:var(--g-bg);color:var(--g-tx);border-color:var(--g-br)}
+.bv{background:var(--a-bg);color:var(--a-tx);border-color:var(--a-br)}
+.dc{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0;min-width:52px;text-align:right}
+.dc.urg{color:var(--r-tx);font-weight:600}
+.dc.soon{color:var(--a-tx);font-weight:500}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center}
+.overlay.show{display:flex}
+.modal{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--rad);padding:1.5rem;width:min(320px,90vw);display:flex;flex-direction:column;gap:12px}
+.modal h2{font-size:15px;font-weight:600}
+.modal p{font-size:12px;color:var(--text2);line-height:1.5}
+.modal input[type=password]{width:100%;padding:8px 10px;border-radius:var(--rad-s);border:1px solid var(--border2);background:var(--bg2);color:var(--text);font-size:14px;outline:none;transition:border-color .15s}
+.modal input:focus{border-color:#185FA5}
+.merr{font-size:12px;color:var(--r-tx);min-height:16px}
+.mbtns{display:flex;gap:8px;justify-content:flex-end}
+.btn-c{font-size:13px;padding:6px 14px;border-radius:var(--rad-s);border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer}
+.btn-c:hover{background:var(--bg3)}
+.btn-ok{font-size:13px;padding:6px 14px;border-radius:var(--rad-s);border:none;background:#1F3864;color:#fff;cursor:pointer;font-weight:500}
+.btn-ok:hover{background:#2E75B6}
+.sync-bar{font-size:11px;color:var(--text3);text-align:center;padding:10px;margin-top:6px}
+.sync-err{color:var(--r-tx)}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-row">
+    <div>
+      <h1>Checklist e-fólio A — SimProgramming CodeZilla</h1>
+      <p>Gestor de Stock Doméstico &nbsp;·&nbsp; Json.NET &nbsp;·&nbsp; Prazo interno: 31 mar</p>
+    </div>
+    <div class="upd" id="upd-label">a carregar...</div>
+  </div>
+</div>
+<div class="main">
+  <div class="stats">
+    <div class="stat"><div class="lbl">Concluídas</div><div class="val vg" id="s-done">—</div></div>
+    <div class="stat"><div class="lbl">Em progresso</div><div class="val va" id="s-prog">—</div></div>
+    <div class="stat"><div class="lbl">Por iniciar</div><div class="val" id="s-todo">—</div></div>
+    <div class="stat"><div class="lbl">Pontos garantidos</div><div class="val vb" id="s-pts">—</div></div>
+  </div>
+  <div class="prog-card">
+    <div class="prog-lbl"><span>Progresso geral do e-fólio A</span><span id="pct-label">0%</span></div>
+    <div class="prog-track">
+      <div class="prog-seg prog-done" id="bar-done" style="width:0%"></div>
+      <div class="prog-seg prog-prog" id="bar-prog" style="width:0%"></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span style="font-weight:500;color:var(--text2)">Estados:</span>
+    <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:var(--bg3);border:0.5px solid var(--border2)"></div><span>Por iniciar</span></div>
+    <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:#EF9F27"></div><span>Em progresso</span></div>
+    <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:#3B6D11"></div><span>Concluído</span></div>
+  </div>
+  <div class="toolbar">
+    <button class="pill active" onclick="setFilter(this,'all')">Todas</button>
+    <button class="pill" onclick="setFilter(this,'lider')">Líder</button>
+    <button class="pill" onclick="setFilter(this,'equipa')">Equipa</button>
+    <button class="pill" onclick="setFilter(this,'verificador')">Verificador</button>
+    <button class="pill" onclick="setFilter(this,'pending')">Não concluídas</button>
+    <div class="spacer"></div>
+    <button class="lbtn" id="lbtn" onclick="toggleLeader()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
+      <span id="lbtn-txt">Modo líder</span>
+    </button>
+  </div>
+  <div id="task-list"></div>
+  <div class="sync-bar" id="sync-bar"></div>
+</div>
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Acesso do líder</h2>
+    <p>Introduz a password para activar o modo de edição. Só o líder pode alterar o estado das tarefas.</p>
+    <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <div class="merr" id="pw-err"></div>
+    <div class="mbtns">
+      <button class="btn-c" onclick="closeModal()">Cancelar</button>
+      <button class="btn-ok" onclick="checkPw()">Entrar</button>
+    </div>
+  </div>
+</div>
+<script>
+const API = '/api/state';
+const ST  = {TODO:'todo',PROG:'prog',DONE:'done'};
+
+const sections = [
+  {label:'Decisões e planeamento',tasks:[
+    {id:'d-api',    name:'API escolhida: Json.NET — decisão registada',                         role:'lider',       pts:0,    date:'22 mar',init:ST.DONE},
+    {id:'d-app',    name:'Proposta escolhida: Gestor de Stock Doméstico',                       role:'lider',       pts:0,    date:'22 mar',init:ST.DONE},
+    {id:'d-discord',name:'Plano de trabalho partilhado no Discord',                             role:'lider',       pts:0,    date:'22 mar',init:ST.DONE},
+    {id:'d-forum',  name:'Fórum "Ferramentas": publicar API + proposta no Moodle',              role:'lider',       pts:0.05, date:'22 mar',init:ST.TODO},
+    {id:'d-plan',   name:'Planificação do Tópico 2 publicada no fórum da equipa (Moodle)',      role:'lider',       pts:0,    date:'22 mar',init:ST.TODO},
+    {id:'d-resp',   name:'Desenvolvedores: resposta de avaliação da planificação (Moodle)',     role:'equipa',      pts:0,    date:'22 mar',init:ST.TODO},
+  ]},
+  {label:'Pontos de situação internos',tasks:[
+    {id:'e-ps',     name:'Ponto de situação do Líder — fórum da equipa (Moodle)',               role:'lider',       pts:0,    date:'25 mar',init:ST.TODO},
+    {id:'e-debate', name:'Debate variante MVC + esboço diagrama de sequência (Discord)',        role:'equipa',      pts:0,    date:'25 mar',init:ST.TODO},
+    {id:'e-pv',     name:'Plano de verificações do Verificador — fórum da equipa (Moodle)',     role:'verificador', pts:0,    date:'28 mar',init:ST.TODO},
+  ]},
+  {label:'Entregas formais',tasks:[
+    {id:'e-seq',    name:'Diagrama de sequência PDF — "O fluxo da arquitetura" (Moodle)',       role:'lider',       pts:0.25, date:'29 mar',init:ST.TODO},
+    {id:'e-af',     name:'Aferição final do e-fólio A — Líder (Moodle)',                        role:'lider',       pts:0,    date:'29 mar',init:ST.TODO},
+    {id:'e-rv',     name:'Resultados das verificações — Verificador (Moodle)',                  role:'verificador', pts:0,    date:'29 mar',init:ST.TODO},
+    {id:'e-pptx',   name:'Estrutura arquitetónica .pptx — "Modelação da arquitetura" (Moodle)',role:'lider',       pts:0.5,  date:'31 mar',init:ST.TODO},
+  ]},
+];
+
+let state={}, isLeader=false, leaderPw='', filter='all';
+
+function parseDt(d){const m=d&&d.match(/(\d+)\s+mar/);return m?new Date(2025,2,+m[1]):null;}
+function dtClass(d){
+  const dt=parseDt(d);if(!dt)return'';
+  const diff=Math.round((dt-new Date())/86400000);
+  return diff<0||diff<=2?'urg':diff<=5?'soon':'';
+}
+
+async function loadState(){
+  setSyncBar('A carregar...');
+  try{
+    const r=await fetch(API);
+    if(!r.ok)throw 0;
+    const d=await r.json();
+    Object.assign(state,d.state||{});
+    const ts=d.updatedAt?new Date(d.updatedAt).toLocaleString('pt-PT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+    document.getElementById('upd-label').textContent='Actualizado: '+ts;
+    setSyncBar('');
+  }catch(e){
+    setSyncBar('Não foi possível ligar ao servidor. A usar estado local.',true);
+    try{const s=localStorage.getItem('cz-state');if(s)Object.assign(state,JSON.parse(s));}catch(_){}
+    document.getElementById('upd-label').textContent='Estado local';
+  }
+}
+
+async function saveState(){
+  setSyncBar('A guardar...');
+  try{
+    const r=await fetch(API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Leader-Password':leaderPw},
+      body:JSON.stringify({state}),
+    });
+    if(r.status===401){setSyncBar('Password incorrecta no servidor.',true);return;}
+    if(!r.ok)throw 0;
+    const ts=new Date().toLocaleString('pt-PT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('upd-label').textContent='Guardado: '+ts;
+    setSyncBar('Guardado e sincronizado.');
+    setTimeout(()=>setSyncBar(''),3000);
+  }catch(e){
+    try{localStorage.setItem('cz-state',JSON.stringify(state));}catch(_){}
+    setSyncBar('Erro ao guardar no servidor. Estado guardado localmente.',true);
+  }
+}
+
+function setSyncBar(msg,err){
+  const el=document.getElementById('sync-bar');
+  el.className='sync-bar'+(err?' sync-err':'');
+  el.textContent=msg;
+}
+
+function initState(){
+  sections.forEach(s=>s.tasks.forEach(t=>{if(!(t.id in state))state[t.id]=t.init;}));
+}
+
+function render(){
+  const list=document.getElementById('task-list');
+  list.innerHTML='';
+  sections.forEach(sec=>{
+    const hdr=document.createElement('div');
+    hdr.className='sec-hdr';hdr.textContent=sec.label;
+    list.appendChild(hdr);
+    sec.tasks.forEach(t=>list.appendChild(makeRow(t)));
+  });
+  updateStats();
+}
+
+function makeRow(t){
+  const st=state[t.id]||ST.TODO;
+  const row=document.createElement('div');
+  row.className='task st-'+st+(filterHides(t)?' hidden':'');
+  row.dataset.id=t.id;row.dataset.role=t.role;row.dataset.st=st;
+  const nm=document.createElement('span');nm.className='tname';nm.textContent=t.name;
+  const sel=document.createElement('div');
+  sel.className='state-sel'+(isLeader?'':' locked');
+  [{k:ST.TODO,label:'Por iniciar',cls:'s-todo'},{k:ST.PROG,label:'Em progresso',cls:'s-prog'},{k:ST.DONE,label:'Concluído',cls:'s-done'}].forEach(o=>{
+    const btn=document.createElement('button');
+    btn.className=o.cls+(st===o.k?' active':'');
+    btn.textContent=o.label;
+    btn.onclick=()=>setState(t.id,o.k);
+    sel.appendChild(btn);
+  });
+  const bdg=document.createElement('span');
+  const bmap={lider:'bl',equipa:'be',verificador:'bv'};
+  const blbl={lider:'Líder',equipa:'Equipa',verificador:'Verificador'};
+  bdg.className='badge '+(bmap[t.role]||'bl');bdg.textContent=blbl[t.role]||t.role;
+  const dc=document.createElement('span');
+  dc.className='dc '+(t.date?dtClass(t.date):'');
+  dc.textContent=(t.date||'')+(t.pts>0?' · '+t.pts.toFixed(2).replace('.',',')+'pt':'');
+  row.appendChild(nm);row.appendChild(sel);row.appendChild(bdg);row.appendChild(dc);
+  return row;
+}
+
+function setState(id,newSt){
+  if(!isLeader)return;
+  state[id]=newSt;
+  const row=document.querySelector(`.task[data-id="${id}"]`);
+  if(row){
+    row.className=row.className.replace(/st-\w+/,'st-'+newSt);
+    row.dataset.st=newSt;
+    row.querySelectorAll('.state-sel button').forEach(btn=>{
+      btn.classList.toggle('active',
+        (newSt===ST.TODO&&btn.classList.contains('s-todo'))||
+        (newSt===ST.PROG&&btn.classList.contains('s-prog'))||
+        (newSt===ST.DONE&&btn.classList.contains('s-done')));
+    });
+    if(filter==='pending'&&newSt===ST.DONE)row.classList.add('hidden');
+  }
+  saveState();updateStats();
+}
+
+function filterHides(t){
+  if(filter==='all')return false;
+  if(filter==='pending')return state[t.id]===ST.DONE;
+  return t.role!==filter;
+}
+function setFilter(btn,f){
+  filter=f;
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.task').forEach(row=>{
+    const st=row.dataset.st,role=row.dataset.role;
+    let show=true;
+    if(f==='pending')show=st!==ST.DONE;
+    else if(f!=='all')show=role===f;
+    row.classList.toggle('hidden',!show);
+  });
+}
+
+function updateStats(){
+  let done=0,prog=0,todo=0,pts=0;
+  sections.forEach(s=>s.tasks.forEach(t=>{
+    const st=state[t.id]||ST.TODO;
+    if(st===ST.DONE){done++;if(t.pts>0)pts+=t.pts;}
+    else if(st===ST.PROG)prog++;
+    else todo++;
+  }));
+  const total=done+prog+todo;
+  const pd=total>0?Math.round(done/total*100):0;
+  const pp=total>0?Math.round(prog/total*100):0;
+  document.getElementById('s-done').textContent=done;
+  document.getElementById('s-prog').textContent=prog;
+  document.getElementById('s-todo').textContent=todo;
+  document.getElementById('s-pts').textContent=pts.toFixed(2).replace('.',',')+' pt';
+  document.getElementById('pct-label').textContent=pd+'% concluído'+(pp>0?' · '+pp+'% em progresso':'');
+  document.getElementById('bar-done').style.width=pd+'%';
+  document.getElementById('bar-prog').style.width=pp+'%';
+}
+
+function toggleLeader(){
+  if(isLeader){lockLeader();return;}
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('pw-input').value='';
+  document.getElementById('pw-err').textContent='';
+  setTimeout(()=>document.getElementById('pw-input').focus(),80);
+}
+function closeModal(){document.getElementById('overlay').classList.remove('show');}
+async function checkPw(){
+  const val=document.getElementById('pw-input').value;
+  if(!val){document.getElementById('pw-err').textContent='Introduz a password.';return;}
+  setSyncBar('A verificar...');
+  try{
+    const r=await fetch(API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Leader-Password':val},
+      body:JSON.stringify({state}),
+    });
+    if(r.status===401){
+      document.getElementById('pw-err').textContent='Password incorrecta.';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+      setSyncBar('');
+      return;
+    }
+    leaderPw=val;
+    isLeader=true;
+    closeModal();
+    document.getElementById('lbtn').classList.add('on');
+    document.getElementById('lbtn-txt').textContent='Líder activo';
+    document.querySelectorAll('.state-sel').forEach(s=>s.classList.remove('locked'));
+    setSyncBar('Modo líder activo.',false);
+    setTimeout(()=>setSyncBar(''),2000);
+  }catch(e){
+    document.getElementById('pw-err').textContent='Erro de ligação. Tenta novamente.';
+    setSyncBar('');
+  }
+}
+function lockLeader(){
+  isLeader=false;leaderPw='';
+  document.getElementById('lbtn').classList.remove('on');
+  document.getElementById('lbtn-txt').textContent='Modo líder';
+  document.querySelectorAll('.state-sel').forEach(s=>s.classList.add('locked'));
+}
+
+(async()=>{
+  await loadState();
+  initState();
+  render();
+})();
+</script>
+</body>
+</html>
