@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Checklist e-fólio A — CodeZilla</title>
+<title>Checklist e-fólio B — CodeZilla</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -31,7 +31,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .hdr h1{font-size:16px;font-weight:600;margin-bottom:2px}
 .hdr p{font-size:12px;opacity:.7}
 .upd{font-size:11px;opacity:.55;margin-top:4px;text-align:right}
-.main{max-width:900px;margin:0 auto;padding:14px 14px 0}
+.main{max-width:960px;margin:0 auto;padding:14px 14px 0}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);padding:10px 12px}
@@ -45,6 +45,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .prog-track{height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;display:flex}
 .prog-seg{height:100%;transition:width .5s ease}
 .prog-done{background:#3B6D11}.prog-prog{background:#EF9F27}
+.tpbar{display:flex;gap:8px;margin-bottom:12px}
+.tpbadge{flex:1;padding:8px 12px;border-radius:var(--rad-s);background:var(--bg);border:0.5px solid var(--border);font-size:11px;color:var(--text2);text-align:center}
+.tpbadge strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.tpbadge.t3{border-left:3px solid #2E75B6}
+.tpbadge.t4{border-left:3px solid #7030A0}
 .toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
 .pill{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
 .pill:hover{background:var(--bg3)}
@@ -54,7 +59,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .lbtn:hover{background:var(--bg3)}
 .lbtn.on{border-color:var(--g-br);color:var(--g-tx);background:var(--g-bg)}
 .lbtn svg{width:13px;height:13px;flex-shrink:0}
-.sec-hdr{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:14px 0 5px;border-bottom:0.5px solid var(--border);margin-bottom:2px}
+.sec-hdr{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:14px 0 5px;border-bottom:0.5px solid var(--border);margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.sec-tp{font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;letter-spacing:0;text-transform:none}
+.tp3{background:#E6F1FB;color:#0C447C;border:0.5px solid #85B7EB}
+.tp4{background:#F3E8FF;color:#5B0F8C;border:0.5px solid #B57BDB}
 .task{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:10px;padding:9px 6px;border-bottom:0.5px solid var(--border);transition:background .1s}
 .task:hover{background:var(--bg3)}
 .task.hidden{display:none}
@@ -72,7 +80,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .bl{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
 .be{background:var(--g-bg);color:var(--g-tx);border-color:var(--g-br)}
 .bv{background:var(--a-bg);color:var(--a-tx);border-color:var(--a-br)}
-.dc{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0;min-width:52px;text-align:right}
+.dc{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0;min-width:56px;text-align:right}
 .dc.urg{color:var(--r-tx);font-weight:600}
 .dc.soon{color:var(--a-tx);font-weight:500}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center}
@@ -96,8 +104,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 <div class="hdr">
   <div class="hdr-row">
     <div>
-      <h1>Checklist e-fólio A — SimProgramming CodeZilla</h1>
-      <p>Gestor de Stock Doméstico &nbsp;·&nbsp; Json.NET &nbsp;·&nbsp; Prazo interno: 31 mar</p>
+      <h1>Checklist e-fólio B — SimProgramming CodeZilla</h1>
+      <p>Gestor de Stock Doméstico &nbsp;·&nbsp; Json.NET &nbsp;·&nbsp; Tópicos 3 e 4 &nbsp;·&nbsp; Tarefas de equipa &nbsp;·&nbsp; Prazo interno: 29 abr</p>
     </div>
     <div class="upd" id="upd-label">a carregar...</div>
   </div>
@@ -109,8 +117,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
     <div class="stat"><div class="lbl">Por iniciar</div><div class="val" id="s-todo">—</div></div>
     <div class="stat"><div class="lbl">Pontos garantidos</div><div class="val vb" id="s-pts">—</div></div>
   </div>
+  <div class="tpbar">
+    <div class="tpbadge t3">
+      <strong>Tópico 3</strong>6 – 19 de abril &nbsp;·&nbsp; Implementação com eventos e delegados
+    </div>
+    <div class="tpbadge t4">
+      <strong>Tópico 4</strong>20 abr – 3 mai &nbsp;·&nbsp; Testes e tratamento de erros com exceções
+    </div>
+  </div>
   <div class="prog-card">
-    <div class="prog-lbl"><span>Progresso geral do e-fólio A</span><span id="pct-label">0%</span></div>
+    <div class="prog-lbl"><span>Progresso geral do e-fólio B</span><span id="pct-label">0%</span></div>
     <div class="prog-track">
       <div class="prog-seg prog-done" id="bar-done" style="width:0%"></div>
       <div class="prog-seg prog-prog" id="bar-prog" style="width:0%"></div>
@@ -121,12 +137,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
     <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:var(--bg3);border:0.5px solid var(--border2)"></div><span>Por iniciar</span></div>
     <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:#EF9F27"></div><span>Em progresso</span></div>
     <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:#3B6D11"></div><span>Concluído</span></div>
+    <div class="leg-item"><span class="sec-tp tp3" style="margin:0">T3</span><span>Tópico 3</span></div>
+    <div class="leg-item"><span class="sec-tp tp4" style="margin:0">T4</span><span>Tópico 4</span></div>
   </div>
   <div class="toolbar">
     <button class="pill active" onclick="setFilter(this,'all')">Todas</button>
     <button class="pill" onclick="setFilter(this,'lider')">Líder</button>
     <button class="pill" onclick="setFilter(this,'equipa')">Equipa</button>
     <button class="pill" onclick="setFilter(this,'verificador')">Verificador</button>
+    <button class="pill" onclick="setFilter(this,'t3')">Tópico 3</button>
+    <button class="pill" onclick="setFilter(this,'t4')">Tópico 4</button>
     <button class="pill" onclick="setFilter(this,'pending')">Não concluídas</button>
     <div class="spacer"></div>
     <button class="lbtn" id="lbtn" onclick="toggleLeader()">
@@ -153,37 +173,69 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 const API = '/api/state';
 const ST  = {TODO:'todo',PROG:'prog',DONE:'done'};
 
+// ── TAREFAS — apenas de equipa ─────────────────────────────────
 const sections = [
-  {label:'Decisões e planeamento',tasks:[
-    {id:'d-api',    name:'API escolhida: Json.NET — decisão registada',                         role:'lider',       pts:0,    date:'22 mar',init:ST.DONE},
-    {id:'d-app',    name:'Proposta escolhida: Gestor de Stock Doméstico',                       role:'lider',       pts:0,    date:'22 mar',init:ST.DONE},
-    {id:'d-discord',name:'Plano de trabalho partilhado no Discord',                             role:'lider',       pts:0,    date:'22 mar',init:ST.DONE},
-    {id:'d-forum',  name:'Fórum "Ferramentas": publicar API + proposta no Moodle',              role:'lider',       pts:0.05, date:'23 mar',init:ST.TODO},
-    {id:'d-plan',   name:'Planificação do Tópico 2 publicada no fórum da equipa (Moodle)',      role:'lider',       pts:0,    date:'23 mar',init:ST.TODO},
-    {id:'d-resp',   name:'Desenvolvedores: resposta de avaliação da planificação (Moodle)',     role:'equipa',      pts:0,    date:'23 mar',init:ST.TODO},
+
+  // ══ TÓPICO 3 ══════════════════════════════════════════════
+  {label:'Tópico 3 — Planeamento e coordenação', tp:'t3', tasks:[
+    {id:'t3-plan',  name:'Planificação dos Tópicos 3 e 4 publicada no fórum da equipa (Moodle)',         role:'lider',       pts:0,    date:'8 abr'},
+    {id:'t3-resp',  name:'Desenvolvedores: avaliação da planificação (resposta no fórum Moodle)',        role:'equipa',      pts:0,    date:'10 abr'},
+    {id:'t3-pv',    name:'Verificador: plano de verificações T3/T4 publicado no fórum (Moodle)',         role:'verificador', pts:0,    date:'12 abr', init:ST.DONE},
   ]},
-  {label:'Pontos de situação internos',tasks:[
-    {id:'e-ps',     name:'Ponto de situação do Líder — fórum da equipa (Moodle)',               role:'lider',       pts:0,    date:'25 mar',init:ST.TODO},
-    {id:'e-debate', name:'Debate variante MVC + esboço diagrama de sequência (Discord)',        role:'equipa',      pts:0,    date:'25 mar',init:ST.TODO},
-    {id:'e-pv',     name:'Plano de verificações do Verificador — fórum da equipa (Moodle)',     role:'verificador', pts:0,    date:'28 mar',init:ST.TODO},
+
+  {label:'Tópico 3 — Implementação (eventos e delegados)', tp:'t3', tasks:[
+    {id:'t3-proto', name:'Protótipo da aplicação implementado com eventos e delegados (K&P) — Discord',  role:'equipa',      pts:0,    date:'16 abr'},
+    {id:'t3-flux',  name:'Mudanças no fluxo da arquitetura — diagrama atualizado com eventos (Moodle)', role:'lider',       pts:0.30, date:'16 abr'},
+    {id:'t3-forum', name:'Implementação da aplicação demonstradora — fórum: 1-2 casos curtos (Moodle)', role:'lider',       pts:0.15, date:'17 abr'},
+    {id:'t3-ps',    name:'Ponto de situação do Líder — Tópico 3 (fórum equipa Moodle)',                 role:'lider',       pts:0,    date:'17 abr'},
   ]},
-  {label:'Entregas formais',tasks:[
-    {id:'e-seq',    name:'Diagrama de sequência PDF — "O fluxo da arquitetura" (Moodle)',       role:'lider',       pts:0.25, date:'29 mar',init:ST.TODO},
-    {id:'e-af',     name:'Aferição final do e-fólio A — Líder (Moodle)',                        role:'lider',       pts:0,    date:'29 mar',init:ST.TODO},
-    {id:'e-rv',     name:'Resultados das verificações — Verificador (Moodle)',                  role:'verificador', pts:0,    date:'29 mar',init:ST.TODO},
-    {id:'e-pptx',   name:'Estrutura arquitetónica .pptx — "Modelação da arquitetura" (Moodle)',role:'lider',       pts:0.5,  date:'31 mar',init:ST.TODO},
+
+  {label:'Tópico 3 — Repositório GitHub', tp:'t3', tasks:[
+    {id:'t3-git',   name:'Repositório GitHub público criado e código do protótipo publicado',            role:'equipa',      pts:0,    date:'18 abr'},
+    {id:'t3-boss',  name:'CEO e CTO da SimProgramming convidados como colaboradores no repositório',     role:'lider',       pts:0,    date:'18 abr'},
+    {id:'t3-url',   name:'Auto-organização: URL do repositório submetido no Moodle',                    role:'lider',       pts:0.55, date:'19 abr'},
+  ]},
+
+  // ══ TÓPICO 4 ══════════════════════════════════════════════
+  {label:'Tópico 4 — Plano de testes', tp:'t4', tasks:[
+    {id:'t4-mint',  name:'Minuta de testes do Verificador analisada pela equipa (Excel — Laurentino)',   role:'verificador', pts:0,    date:'22 abr', init:ST.DONE},
+    {id:'t4-plan',  name:'Mapear os testes — plano de testes preenchido com base na minuta (Moodle)',   role:'lider',       pts:0.30, date:'28 abr'},
+  ]},
+
+  {label:'Tópico 4 — Tratamento de erros e aplicação final', tp:'t4', tasks:[
+    {id:'t4-exc',   name:'Exceções implementadas nos fluxos de erro respeitando o estilo MVC',           role:'equipa',      pts:0,    date:'26 abr'},
+    {id:'t4-forum', name:'Controlar os erros — fórum: como foram usadas exceções em MVC (Moodle)',      role:'lider',       pts:0.10, date:'28 abr'},
+    {id:'t4-app',   name:'Habemus aplicação — código final com exceções submetido (Moodle)',            role:'lider',       pts:1.00, date:'29 abr'},
+  ]},
+
+  {label:'Tópico 4 — Aferição final e-fólio B', tp:'t4', tasks:[
+    {id:'t4-ps',    name:'Ponto de situação do Líder — Tópico 4 (fórum equipa Moodle)',                 role:'lider',       pts:0,    date:'28 abr'},
+    {id:'t4-vres',  name:'Verificador: resultados das verificações publicados (fórum equipa Moodle)',   role:'verificador', pts:0,    date:'29 abr'},
+    {id:'t4-afer',  name:'Aferição final do e-fólio B — Líder (fórum equipa Moodle)',                  role:'lider',       pts:0,    date:'29 abr'},
+    {id:'t4-dev',   name:'Desenvolvedores: aferição da situação final (fórum equipa Moodle)',           role:'equipa',      pts:0,    date:'29 abr'},
   ]},
 ];
 
+// inicializar estados
+sections.forEach(s=>s.tasks.forEach(t=>{if(!t.init)t.init=ST.TODO;}));
+
 let state={}, isLeader=false, leaderPw='', filter='all';
 
-function parseDt(d){const m=d&&d.match(/(\d+)\s+mar/);return m?new Date(2025,2,+m[1]):null;}
+// ── datas ─────────────────────────────────────────────────────
+function parseDt(d){
+  if(!d)return null;
+  const meses={jan:0,fev:1,mar:2,abr:3,mai:4,jun:5,jul:6,ago:7,set:8,out:9,nov:10,dez:11};
+  const m=d.match(/(\d+)\s+(\w+)/);
+  if(!m)return null;
+  return new Date(2026, meses[m[2]]??3, +m[1]);
+}
 function dtClass(d){
   const dt=parseDt(d);if(!dt)return'';
   const diff=Math.round((dt-new Date())/86400000);
   return diff<0||diff<=2?'urg':diff<=5?'soon':'';
 }
 
+// ── storage ───────────────────────────────────────────────────
 async function loadState(){
   setSyncBar('A carregar...');
   try{
@@ -195,8 +247,8 @@ async function loadState(){
     document.getElementById('upd-label').textContent='Actualizado: '+ts;
     setSyncBar('');
   }catch(e){
-    setSyncBar('Não foi possível ligar ao servidor. A usar estado local.',true);
-    try{const s=localStorage.getItem('cz-state');if(s)Object.assign(state,JSON.parse(s));}catch(_){}
+    setSyncBar('Servidor não disponível. A usar estado local.',true);
+    try{const s=localStorage.getItem('cz-b-state');if(s)Object.assign(state,JSON.parse(s));}catch(_){}
     document.getElementById('upd-label').textContent='Estado local';
   }
 }
@@ -216,8 +268,8 @@ async function saveState(){
     setSyncBar('Guardado e sincronizado.');
     setTimeout(()=>setSyncBar(''),3000);
   }catch(e){
-    try{localStorage.setItem('cz-state',JSON.stringify(state));}catch(_){}
-    setSyncBar('Erro ao guardar no servidor. Estado guardado localmente.',true);
+    try{localStorage.setItem('cz-b-state',JSON.stringify(state));}catch(_){}
+    setSyncBar('Erro no servidor. Estado guardado localmente.',true);
   }
 }
 
@@ -231,40 +283,53 @@ function initState(){
   sections.forEach(s=>s.tasks.forEach(t=>{if(!(t.id in state))state[t.id]=t.init;}));
 }
 
+// ── render ────────────────────────────────────────────────────
 function render(){
   const list=document.getElementById('task-list');
   list.innerHTML='';
   sections.forEach(sec=>{
     const hdr=document.createElement('div');
-    hdr.className='sec-hdr';hdr.textContent=sec.label;
+    hdr.className='sec-hdr';
+    const span=document.createElement('span');span.textContent=sec.label;
+    const badge=document.createElement('span');
+    badge.className='sec-tp '+(sec.tp==='t3'?'tp3':'tp4');
+    badge.textContent=sec.tp==='t3'?'T3':'T4';
+    hdr.appendChild(span);hdr.appendChild(badge);
     list.appendChild(hdr);
-    sec.tasks.forEach(t=>list.appendChild(makeRow(t)));
+    sec.tasks.forEach(t=>list.appendChild(makeRow(t,sec.tp)));
   });
   updateStats();
 }
 
-function makeRow(t){
+function makeRow(t,tp){
   const st=state[t.id]||ST.TODO;
   const row=document.createElement('div');
-  row.className='task st-'+st+(filterHides(t)?' hidden':'');
-  row.dataset.id=t.id;row.dataset.role=t.role;row.dataset.st=st;
+  row.className='task st-'+st+(filterHides(t,tp)?' hidden':'');
+  row.dataset.id=t.id;row.dataset.role=t.role;row.dataset.st=st;row.dataset.tp=tp;
+
   const nm=document.createElement('span');nm.className='tname';nm.textContent=t.name;
+
   const sel=document.createElement('div');
   sel.className='state-sel'+(isLeader?'':' locked');
-  [{k:ST.TODO,label:'Por iniciar',cls:'s-todo'},{k:ST.PROG,label:'Em progresso',cls:'s-prog'},{k:ST.DONE,label:'Concluído',cls:'s-done'}].forEach(o=>{
+  [{k:ST.TODO,label:'Por iniciar',cls:'s-todo'},
+   {k:ST.PROG,label:'Em progresso',cls:'s-prog'},
+   {k:ST.DONE,label:'Concluído',cls:'s-done'}].forEach(o=>{
     const btn=document.createElement('button');
     btn.className=o.cls+(st===o.k?' active':'');
     btn.textContent=o.label;
     btn.onclick=()=>setState(t.id,o.k);
     sel.appendChild(btn);
   });
+
   const bdg=document.createElement('span');
   const bmap={lider:'bl',equipa:'be',verificador:'bv'};
   const blbl={lider:'Líder',equipa:'Equipa',verificador:'Verificador'};
   bdg.className='badge '+(bmap[t.role]||'bl');bdg.textContent=blbl[t.role]||t.role;
+
   const dc=document.createElement('span');
   dc.className='dc '+(t.date?dtClass(t.date):'');
   dc.textContent=(t.date||'')+(t.pts>0?' · '+t.pts.toFixed(2).replace('.',',')+'pt':'');
+
   row.appendChild(nm);row.appendChild(sel);row.appendChild(bdg);row.appendChild(dc);
   return row;
 }
@@ -287,19 +352,24 @@ function setState(id,newSt){
   saveState();updateStats();
 }
 
-function filterHides(t){
+function filterHides(t,tp){
   if(filter==='all')return false;
   if(filter==='pending')return state[t.id]===ST.DONE;
+  if(filter==='t3')return tp!=='t3';
+  if(filter==='t4')return tp!=='t4';
   return t.role!==filter;
 }
+
 function setFilter(btn,f){
   filter=f;
   document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.task').forEach(row=>{
-    const st=row.dataset.st,role=row.dataset.role;
+    const st=row.dataset.st,role=row.dataset.role,tp=row.dataset.tp;
     let show=true;
     if(f==='pending')show=st!==ST.DONE;
+    else if(f==='t3')show=tp==='t3';
+    else if(f==='t4')show=tp==='t4';
     else if(f!=='all')show=role===f;
     row.classList.toggle('hidden',!show);
   });
@@ -325,6 +395,7 @@ function updateStats(){
   document.getElementById('bar-prog').style.width=pp+'%';
 }
 
+// ── modo líder ────────────────────────────────────────────────
 function toggleLeader(){
   if(isLeader){lockLeader();return;}
   document.getElementById('overlay').classList.add('show');
@@ -347,12 +418,9 @@ async function checkPw(){
       document.getElementById('pw-err').textContent='Password incorrecta.';
       document.getElementById('pw-input').value='';
       document.getElementById('pw-input').focus();
-      setSyncBar('');
-      return;
+      setSyncBar('');return;
     }
-    leaderPw=val;
-    isLeader=true;
-    closeModal();
+    leaderPw=val;isLeader=true;closeModal();
     document.getElementById('lbtn').classList.add('on');
     document.getElementById('lbtn-txt').textContent='Líder activo';
     document.querySelectorAll('.state-sel').forEach(s=>s.classList.remove('locked'));
