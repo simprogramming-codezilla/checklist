@@ -50,7 +50,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .tpbadge strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
 .tpbadge.t3{border-left:3px solid #2E75B6}
 .tpbadge.t4{border-left:3px solid #7030A0}
-.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:6px}
+.toolbar-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.toolbar-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
 .pill{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
 .pill:hover{background:var(--bg3)}
 .pill.active{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
@@ -63,7 +65,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .sec-tp{font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;letter-spacing:0;text-transform:none}
 .tp3{background:#E6F1FB;color:#0C447C;border:0.5px solid #85B7EB}
 .tp4{background:#F3E8FF;color:#5B0F8C;border:0.5px solid #B57BDB}
-.task{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:10px;padding:9px 6px;border-bottom:0.5px solid var(--border);transition:background .1s}
+.task{display:grid;grid-template-columns:1fr auto auto auto auto;align-items:center;gap:10px;padding:9px 6px;border-bottom:0.5px solid var(--border);transition:background .1s}
 .task:hover{background:var(--bg3)}
 .task.hidden{display:none}
 .tname{font-size:13px;line-height:1.4;color:var(--text)}
@@ -77,9 +79,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .state-sel button.s-done.active{background:var(--g-bg);color:var(--g-tx)}
 .state-sel.locked button{cursor:default;opacity:.45;pointer-events:none}
 .badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;border:0.5px solid;white-space:nowrap;flex-shrink:0}
+/* papel */
 .bl{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
 .be{background:var(--g-bg);color:var(--g-tx);border-color:var(--g-br)}
 .bv{background:var(--a-bg);color:var(--a-tx);border-color:var(--a-br)}
+/* membro */
+.bm-pedro   {background:#EDE7F6;color:#4A148C;border-color:#AB47BC}
+.bm-alexandre{background:#E3F2FD;color:#0D47A1;border-color:#42A5F5}
+.bm-carlos  {background:#E8F5E9;color:#1B5E20;border-color:#66BB6A}
+.bm-kelvin  {background:#FFF3E0;color:#E65100;border-color:#FFA726}
+.bm-laurentino{background:#FCE4EC;color:#880E4F;border-color:#F06292}
+.bm-todos   {background:var(--bg3);color:var(--text2);border-color:var(--border2)}
 .dc{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0;min-width:56px;text-align:right}
 .dc.urg{color:var(--r-tx);font-weight:600}
 .dc.soon{color:var(--a-tx);font-weight:500}
@@ -118,12 +128,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
     <div class="stat"><div class="lbl">Pontos garantidos</div><div class="val vb" id="s-pts">—</div></div>
   </div>
   <div class="tpbar">
-    <div class="tpbadge t3">
-      <strong>Tópico 3</strong>6 – 19 de abril &nbsp;·&nbsp; Implementação com eventos e delegados
-    </div>
-    <div class="tpbadge t4">
-      <strong>Tópico 4</strong>20 abr – 3 mai &nbsp;·&nbsp; Testes e tratamento de erros com exceções
-    </div>
+    <div class="tpbadge t3"><strong>Tópico 3</strong>6 – 19 de abril &nbsp;·&nbsp; Implementação com eventos e delegados</div>
+    <div class="tpbadge t4"><strong>Tópico 4</strong>20 abr – 3 mai &nbsp;·&nbsp; Testes e tratamento de erros com exceções</div>
   </div>
   <div class="prog-card">
     <div class="prog-lbl"><span>Progresso geral do e-fólio B</span><span id="pct-label">0%</span></div>
@@ -140,7 +146,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
     <div class="leg-item"><span class="sec-tp tp3" style="margin:0">T3</span><span>Tópico 3</span></div>
     <div class="leg-item"><span class="sec-tp tp4" style="margin:0">T4</span><span>Tópico 4</span></div>
   </div>
+
+  <!-- Filtros por papel/tópico -->
   <div class="toolbar">
+    <span class="toolbar-label">Vista:</span>
     <button class="pill active" onclick="setFilter(this,'all')">Todas</button>
     <button class="pill" onclick="setFilter(this,'lider')">Líder</button>
     <button class="pill" onclick="setFilter(this,'equipa')">Equipa</button>
@@ -154,6 +163,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
       <span id="lbtn-txt">Modo líder</span>
     </button>
   </div>
+
+  <!-- Filtros por membro -->
+  <div class="toolbar-row">
+    <span class="toolbar-label">Membro:</span>
+    <button class="pill" onclick="setMemberFilter(this,'pedro')">Pedro (Líder)</button>
+    <button class="pill" onclick="setMemberFilter(this,'alexandre')">Alexandre</button>
+    <button class="pill" onclick="setMemberFilter(this,'carlos')">Carlos</button>
+    <button class="pill" onclick="setMemberFilter(this,'kelvin')">Kelvin</button>
+    <button class="pill" onclick="setMemberFilter(this,'laurentino')">Laurentino</button>
+    <button class="pill active" onclick="setMemberFilter(this,'todos')">Todos</button>
+  </div>
+
   <div id="task-list"></div>
   <div class="sync-bar" id="sync-bar"></div>
 </div>
@@ -173,53 +194,156 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 const API = '/api/state';
 const ST  = {TODO:'todo',PROG:'prog',DONE:'done'};
 
-// ── TAREFAS — apenas de equipa ─────────────────────────────────
+// ── TAREFAS ────────────────────────────────────────────────────
 const sections = [
 
-  // ══ TÓPICO 3 ══════════════════════════════════════════════
+  // ══ TÓPICO 3 — PLANEAMENTO ════════════════════════════════
   {label:'Tópico 3 — Planeamento e coordenação', tp:'t3', tasks:[
-    {id:'t3-plan',  name:'Planificação dos Tópicos 3 e 4 publicada no fórum da equipa (Moodle)',         role:'lider',       pts:0,    date:'8 abr'},
-    {id:'t3-resp',  name:'(Restantes membros da equipa): avaliação da planificação (resposta no fórum Moodle)',        role:'equipa',      pts:0,    date:'10 abr'},
-    {id:'t3-pv',    name:'Verificador: plano de verificações T3/T4 publicado no fórum (Moodle)',         role:'verificador', pts:0,    date:'12 abr', init:ST.DONE},
+    {id:'t3-plan',
+      name:'Pedro — Planificação dos Tópicos 3 e 4 publicada no fórum da equipa (Moodle)',
+      role:'lider', member:'pedro', pts:0, date:'8 abr', init:ST.DONE},
+    {id:'t3-resp-alex',
+      name:'Alexandre — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
+      role:'equipa', member:'alexandre', pts:0, date:'10 abr'},
+    {id:'t3-resp-carlos',
+      name:'Carlos — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
+      role:'equipa', member:'carlos', pts:0, date:'10 abr'},
+    {id:'t3-resp-kelvin',
+      name:'Kelvin — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
+      role:'equipa', member:'kelvin', pts:0, date:'10 abr'},
+    {id:'t3-resp-laur',
+      name:'Laurentino — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
+      role:'verificador', member:'laurentino', pts:0, date:'10 abr'},
+    {id:'t3-pv',
+      name:'Laurentino — Plano de verificações T3/T4 publicado no fórum (Moodle)',
+      role:'verificador', member:'laurentino', pts:0, date:'12 abr', init:ST.DONE},
   ]},
 
+  // ══ TÓPICO 3 — DISTRIBUIÇÃO DE COMPONENTES ═══════════════
+  {label:'Tópico 3 — Distribuição de componentes MVC', tp:'t3', tasks:[
+    {id:'t3-comp-pedro',
+      name:'Pedro — Skeleton da aplicação: ligação de eventos entre componentes + integração geral',
+      role:'lider', member:'pedro', pts:0, date:'16 abr'},
+    {id:'t3-comp-alex',
+      name:'Alexandre — Componente Model: lógica de negócio + persistência JSON (Json.NET)',
+      role:'equipa', member:'alexandre', pts:0, date:'16 abr'},
+    {id:'t3-comp-carlos',
+      name:'Carlos — Componente View: input do utilizador + apresentação de resultados',
+      role:'equipa', member:'carlos', pts:0, date:'16 abr'},
+    {id:'t3-comp-kelvin',
+      name:'Kelvin — Componente Controller: coordenação do fluxo View → Model → View',
+      role:'equipa', member:'kelvin', pts:0, date:'16 abr'},
+    {id:'t3-comp-laur',
+      name:'Laurentino — Verificação de conformidade MVC + componente auxiliar de apoio',
+      role:'verificador', member:'laurentino', pts:0, date:'16 abr'},
+  ]},
+
+  // ══ TÓPICO 3 — IMPLEMENTAÇÃO ══════════════════════════════
   {label:'Tópico 3 — Implementação (eventos e delegados)', tp:'t3', tasks:[
-    {id:'t3-proto', name:'Protótipo da aplicação implementado com eventos e delegados (Curry & Grace — input na View) — Discord',  role:'equipa',      pts:0,    date:'16 abr'},
-    {id:'t3-flux',  name:'Mudanças no fluxo da arquitetura — diagrama atualizado com eventos (Moodle)', role:'lider',       pts:0.30, date:'16 abr'},
-    {id:'t3-forum', name:'Implementação da aplicação demonstradora — fórum: 1-2 casos curtos (Moodle)', role:'lider',       pts:0.15, date:'17 abr'},
-    {id:'t3-ps',    name:'Ponto de situação do Líder — Tópico 3 (fórum equipa Moodle)',                 role:'lider',       pts:0,    date:'17 abr'},
+    {id:'t3-proto',
+      name:'Pedro — Coordenação e integração do protótipo com eventos e delegados (Curry & Grace — input na View), com contributos de Model, View e Controller — publicado no Discord',
+      role:'lider', member:'pedro', pts:0, date:'16 abr'},
+    {id:'t3-flux',
+      name:'Pedro — Análise de alternativa arquitetónica (K&P) e justificação da decisão de manter a arquitetura submetida (Moodle)',
+      role:'lider', member:'pedro', pts:0.30, date:'16 abr'},
+    {id:'t3-forum',
+      name:'Pedro — Implementação da aplicação demonstradora: fórum 1-2 casos curtos (Moodle)',
+      role:'lider', member:'pedro', pts:0.15, date:'17 abr'},
+    {id:'t3-ps',
+      name:'Pedro — Ponto de situação Tópico 3: estado de cada membro (fórum equipa Moodle)',
+      role:'lider', member:'pedro', pts:0, date:'17 abr'},
   ]},
 
+  // ══ TÓPICO 3 — GITHUB ═════════════════════════════════════
   {label:'Tópico 3 — Repositório GitHub', tp:'t3', tasks:[
-    {id:'t3-git',   name:'Repositório GitHub público criado e código do protótipo publicado',            role:'equipa',      pts:0,    date:'18 abr'},
-    {id:'t3-boss',  name:'CEO e CTO da SimProgramming convidados como colaboradores no repositório',     role:'lider',       pts:0,    date:'18 abr'},
-    {id:'t3-url',   name:'Auto-organização: URL do repositório submetido no Moodle',                    role:'lider',       pts:0.55, date:'19 abr'},
+    {id:'t3-git-alex',
+      name:'Alexandre — Código do componente Model publicado no repositório GitHub',
+      role:'equipa', member:'alexandre', pts:0, date:'18 abr'},
+    {id:'t3-git-carlos',
+      name:'Carlos — Código do componente View publicado no repositório GitHub',
+      role:'equipa', member:'carlos', pts:0, date:'18 abr'},
+    {id:'t3-git-kelvin',
+      name:'Kelvin — Código do componente Controller publicado no repositório GitHub',
+      role:'equipa', member:'kelvin', pts:0, date:'18 abr'},
+    {id:'t3-boss',
+      name:'Pedro — CEO e CTO da SimProgramming convidados como colaboradores (GitHub Settings)',
+      role:'lider', member:'pedro', pts:0, date:'18 abr', init:ST.DONE},
+    {id:'t3-url',
+      name:'Pedro — Auto-organização: URL do repositório submetido no Moodle',
+      role:'lider', member:'pedro', pts:0.55, date:'19 abr'},
   ]},
 
-  // ══ TÓPICO 4 ══════════════════════════════════════════════
+  // ══ TÓPICO 4 — PLANO DE TESTES ════════════════════════════
   {label:'Tópico 4 — Plano de testes', tp:'t4', tasks:[
-    {id:'t4-mint',  name:'Minuta de testes do Verificador analisada pela equipa (Excel — Laurentino)',   role:'verificador', pts:0,    date:'22 abr', init:ST.DONE},
-    {id:'t4-plan',  name:'Mapear os testes — plano de testes preenchido com base na minuta (Moodle)',   role:'lider',       pts:0.30, date:'28 abr'},
+    {id:'t4-mint',
+      name:'Laurentino — Minuta de testes analisada e partilhada com a equipa (Excel)',
+      role:'verificador', member:'laurentino', pts:0, date:'22 abr', init:ST.DONE},
+    {id:'t4-testes-alex',
+      name:'Alexandre — Testes para o componente Model identificados e documentados',
+      role:'equipa', member:'alexandre', pts:0, date:'24 abr'},
+    {id:'t4-testes-carlos',
+      name:'Carlos — Testes para o componente View identificados e documentados',
+      role:'equipa', member:'carlos', pts:0, date:'24 abr'},
+    {id:'t4-testes-kelvin',
+      name:'Kelvin — Testes para o componente Controller identificados e documentados',
+      role:'equipa', member:'kelvin', pts:0, date:'24 abr'},
+    {id:'t4-plan',
+      name:'Pedro — Mapear os testes: plano de testes preenchido com base na minuta (Moodle)',
+      role:'lider', member:'pedro', pts:0.30, date:'28 abr'},
   ]},
 
+  // ══ TÓPICO 4 — ERROS E APLICAÇÃO FINAL ═══════════════════
   {label:'Tópico 4 — Tratamento de erros e aplicação final', tp:'t4', tasks:[
-    {id:'t4-exc',   name:'Exceções implementadas nos fluxos de erro respeitando o estilo MVC',           role:'equipa',      pts:0,    date:'26 abr'},
-    {id:'t4-forum', name:'Controlar os erros — fórum: como foram usadas exceções em MVC (Moodle)',      role:'lider',       pts:0.10, date:'28 abr'},
-    {id:'t4-app',   name:'Habemus aplicação — código final com exceções submetido (Moodle)',            role:'lider',       pts:1.00, date:'29 abr'},
+    {id:'t4-exc-alex',
+      name:'Alexandre — Exceções no Model: stock insuficiente, JSON inválido, produto não encontrado',
+      role:'equipa', member:'alexandre', pts:0, date:'25 abr'},
+    {id:'t4-exc-carlos',
+      name:'Carlos — Exceções na View: tratamento de inputs inválidos do utilizador',
+      role:'equipa', member:'carlos', pts:0, date:'25 abr'},
+    {id:'t4-exc-kelvin',
+      name:'Kelvin — Exceções no Controller: propagação e encaminhamento de erros do fluxo MVC',
+      role:'equipa', member:'kelvin', pts:0, date:'25 abr'},
+    {id:'t4-exc-laur',
+      name:'Laurentino — Verificação: exceções implementadas respeitam o estilo MVC em todos os componentes',
+      role:'verificador', member:'laurentino', pts:0, date:'26 abr'},
+    {id:'t4-coer-laur',
+      name:'Laurentino — Verificação final: coerência entre diagramas, código e decisões arquitetónicas',
+      role:'verificador', member:'laurentino', pts:0, date:'27 abr'},
+    {id:'t4-forum',
+      name:'Pedro — Controlar os erros: fórum como foram usadas exceções em MVC (Moodle)',
+      role:'lider', member:'pedro', pts:0.10, date:'28 abr'},
+    {id:'t4-app',
+      name:'Pedro — Submissão do código final com tratamento de exceções (Moodle)',
+      role:'lider', member:'pedro', pts:1.00, date:'29 abr'},
   ]},
 
+  // ══ TÓPICO 4 — AFERIÇÃO FINAL ═════════════════════════════
   {label:'Tópico 4 — Aferição final e-fólio B', tp:'t4', tasks:[
-    {id:'t4-ps',    name:'Ponto de situação do Líder — Tópico 4 (fórum equipa Moodle)',                 role:'lider',       pts:0,    date:'28 abr'},
-    {id:'t4-vres',  name:'Verificador: resultados das verificações publicados (fórum equipa Moodle)',   role:'verificador', pts:0,    date:'29 abr'},
-    {id:'t4-afer',  name:'Aferição final do e-fólio B — Líder (fórum equipa Moodle)',                  role:'lider',       pts:0,    date:'29 abr'},
-    {id:'t4-dev',   name:'Desenvolvedores: aferição da situação final (fórum equipa Moodle)',           role:'equipa',      pts:0,    date:'29 abr'},
+    {id:'t4-ps',
+      name:'Pedro — Ponto de situação Tópico 4 (fórum equipa Moodle)',
+      role:'lider', member:'pedro', pts:0, date:'28 abr'},
+    {id:'t4-vres',
+      name:'Laurentino — Resultados das verificações publicados (fórum equipa Moodle)',
+      role:'verificador', member:'laurentino', pts:0, date:'29 abr'},
+    {id:'t4-afer',
+      name:'Pedro — Aferição final do e-fólio B (fórum equipa Moodle)',
+      role:'lider', member:'pedro', pts:0, date:'29 abr'},
+    {id:'t4-dev-alex',
+      name:'Alexandre — Reflexão individual sobre contribuição e aferição da situação final (fórum equipa Moodle)',
+      role:'equipa', member:'alexandre', pts:0, date:'29 abr'},
+    {id:'t4-dev-carlos',
+      name:'Carlos — Reflexão individual sobre contribuição e aferição da situação final (fórum equipa Moodle)',
+      role:'equipa', member:'carlos', pts:0, date:'29 abr'},
+    {id:'t4-dev-kelvin',
+      name:'Kelvin — Reflexão individual sobre contribuição e aferição da situação final (fórum equipa Moodle)',
+      role:'equipa', member:'kelvin', pts:0, date:'29 abr'},
   ]},
 ];
 
 // inicializar estados
 sections.forEach(s=>s.tasks.forEach(t=>{if(!t.init)t.init=ST.TODO;}));
 
-let state={}, isLeader=false, leaderPw='', filter='all';
+let state={}, isLeader=false, leaderPw='', filter='all', memberFilter='todos';
 
 // ── datas ─────────────────────────────────────────────────────
 function parseDt(d){
@@ -283,6 +407,12 @@ function initState(){
   sections.forEach(s=>s.tasks.forEach(t=>{if(!(t.id in state))state[t.id]=t.init;}));
 }
 
+// ── badges ────────────────────────────────────────────────────
+const ROLE_CLS ={lider:'bl',equipa:'be',verificador:'bv'};
+const ROLE_LBL ={lider:'Líder',equipa:'Equipa',verificador:'Verificador'};
+const MEMBER_CLS={pedro:'bm-pedro',alexandre:'bm-alexandre',carlos:'bm-carlos',kelvin:'bm-kelvin',laurentino:'bm-laurentino',todos:'bm-todos'};
+const MEMBER_LBL={pedro:'Pedro',alexandre:'Alexandre',carlos:'Carlos',kelvin:'Kelvin',laurentino:'Laurentino',todos:'Todos'};
+
 // ── render ────────────────────────────────────────────────────
 function render(){
   const list=document.getElementById('task-list');
@@ -305,7 +435,7 @@ function makeRow(t,tp){
   const st=state[t.id]||ST.TODO;
   const row=document.createElement('div');
   row.className='task st-'+st+(filterHides(t,tp)?' hidden':'');
-  row.dataset.id=t.id;row.dataset.role=t.role;row.dataset.st=st;row.dataset.tp=tp;
+  row.dataset.id=t.id;row.dataset.role=t.role;row.dataset.member=t.member||'todos';row.dataset.st=st;row.dataset.tp=tp;
 
   const nm=document.createElement('span');nm.className='tname';nm.textContent=t.name;
 
@@ -321,16 +451,22 @@ function makeRow(t,tp){
     sel.appendChild(btn);
   });
 
+  // badge papel
   const bdg=document.createElement('span');
-  const bmap={lider:'bl',equipa:'be',verificador:'bv'};
-  const blbl={lider:'Líder',equipa:'Equipa',verificador:'Verificador'};
-  bdg.className='badge '+(bmap[t.role]||'bl');bdg.textContent=blbl[t.role]||t.role;
+  bdg.className='badge '+(ROLE_CLS[t.role]||'bl');
+  bdg.textContent=ROLE_LBL[t.role]||t.role;
+
+  // badge membro
+  const mbdg=document.createElement('span');
+  const mem=t.member||'todos';
+  mbdg.className='badge '+(MEMBER_CLS[mem]||'bm-todos');
+  mbdg.textContent=MEMBER_LBL[mem]||mem;
 
   const dc=document.createElement('span');
   dc.className='dc '+(t.date?dtClass(t.date):'');
   dc.textContent=(t.date||'')+(t.pts>0?' · '+t.pts.toFixed(2).replace('.',',')+'pt':'');
 
-  row.appendChild(nm);row.appendChild(sel);row.appendChild(bdg);row.appendChild(dc);
+  row.appendChild(nm);row.appendChild(sel);row.appendChild(bdg);row.appendChild(mbdg);row.appendChild(dc);
   return row;
 }
 
@@ -353,6 +489,9 @@ function setState(id,newSt){
 }
 
 function filterHides(t,tp){
+  // filtro de membro
+  if(memberFilter!=='todos' && t.member!==memberFilter && t.member!=='todos') return true;
+  // filtro principal
   if(filter==='all')return false;
   if(filter==='pending')return state[t.id]===ST.DONE;
   if(filter==='t3')return tp!=='t3';
@@ -362,15 +501,31 @@ function filterHides(t,tp){
 
 function setFilter(btn,f){
   filter=f;
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.toolbar .pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
+  applyFilters();
+}
+
+function setMemberFilter(btn,m){
+  memberFilter=m;
+  document.querySelectorAll('.toolbar-row .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters(){
   document.querySelectorAll('.task').forEach(row=>{
-    const st=row.dataset.st,role=row.dataset.role,tp=row.dataset.tp;
+    const st=row.dataset.st, role=row.dataset.role, tp=row.dataset.tp, mem=row.dataset.member||'todos';
     let show=true;
-    if(f==='pending')show=st!==ST.DONE;
-    else if(f==='t3')show=tp==='t3';
-    else if(f==='t4')show=tp==='t4';
-    else if(f!=='all')show=role===f;
+    // membro
+    if(memberFilter!=='todos' && mem!==memberFilter && mem!=='todos') show=false;
+    // papel/tópico
+    if(show){
+      if(filter==='pending') show=st!==ST.DONE;
+      else if(filter==='t3') show=tp==='t3';
+      else if(filter==='t4') show=tp==='t4';
+      else if(filter!=='all') show=role===filter;
+    }
     row.classList.toggle('hidden',!show);
   });
 }
