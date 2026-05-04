@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Checklist e-fólio B — CodeZilla</title>
+<title>Checklist e-fólio 3 — CodeZilla</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -14,6 +14,7 @@
   --a-bg:#FAEEDA;--a-tx:#633806;--a-br:#EF9F27;
   --r-bg:#FCEBEB;--r-tx:#791F1F;--r-br:#E24B4A;
   --b-bg:#E6F1FB;--b-tx:#0C447C;--b-br:#85B7EB;
+  --p-bg:#EEEDFE;--p-tx:#3C3489;--p-br:#AFA9EC;
   --rad:10px;--rad-s:7px;
 }
 @media(prefers-color-scheme:dark){:root{
@@ -24,35 +25,42 @@
   --a-bg:#412402;--a-tx:#FAC775;--a-br:#854F0B;
   --r-bg:#501313;--r-tx:#F7C1C1;--r-br:#A32D2D;
   --b-bg:#042C53;--b-tx:#B5D4F4;--b-br:#185FA5;
+  --p-bg:#26215C;--p-tx:#CECBF6;--p-br:#534AB7;
 }}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:14px;background:var(--bg2);color:var(--text);min-height:100vh;padding-bottom:4rem}
+
+/* header */
 .hdr{background:#1F3864;color:#fff;padding:14px 20px}
 .hdr-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .hdr h1{font-size:16px;font-weight:600;margin-bottom:2px}
 .hdr p{font-size:12px;opacity:.7}
 .upd{font-size:11px;opacity:.55;margin-top:4px;text-align:right}
+
+/* main */
 .main{max-width:960px;margin:0 auto;padding:14px 14px 0}
+
+/* stats */
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);padding:10px 12px}
 .stat .lbl{font-size:11px;color:var(--text3);margin-bottom:3px}
 .stat .val{font-size:22px;font-weight:600;line-height:1}
 .vg{color:var(--g-tx)}.va{color:var(--a-tx)}.vb{color:var(--b-tx)}
+
+/* legend */
 .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;padding:8px 12px;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);font-size:12px;color:var(--text2)}
 .leg-item{display:flex;align-items:center;gap:6px}
+
+/* progress */
 .prog-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rad-s);padding:10px 14px;margin-bottom:12px}
 .prog-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px}
 .prog-track{height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;display:flex}
 .prog-seg{height:100%;transition:width .5s ease}
-.prog-done{background:#3B6D11}.prog-prog{background:#EF9F27}
-.tpbar{display:flex;gap:8px;margin-bottom:12px}
-.tpbadge{flex:1;padding:8px 12px;border-radius:var(--rad-s);background:var(--bg);border:0.5px solid var(--border);font-size:11px;color:var(--text2);text-align:center}
-.tpbadge strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
-.tpbadge.t3{border-left:3px solid #2E75B6}
-.tpbadge.t4{border-left:3px solid #7030A0}
-.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:6px}
-.toolbar-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
-.toolbar-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.prog-done{background:#3B6D11}
+.prog-prog{background:#EF9F27}
+
+/* toolbar */
+.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
 .pill{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
 .pill:hover{background:var(--bg3)}
 .pill.active{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
@@ -61,15 +69,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .lbtn:hover{background:var(--bg3)}
 .lbtn.on{border-color:var(--g-br);color:var(--g-tx);background:var(--g-bg)}
 .lbtn svg{width:13px;height:13px;flex-shrink:0}
-.sec-hdr{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:14px 0 5px;border-bottom:0.5px solid var(--border);margin-bottom:2px;display:flex;align-items:center;gap:8px}
-.sec-tp{font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;letter-spacing:0;text-transform:none}
-.tp3{background:#E6F1FB;color:#0C447C;border:0.5px solid #85B7EB}
-.tp4{background:#F3E8FF;color:#5B0F8C;border:0.5px solid #B57BDB}
-.task{display:grid;grid-template-columns:1fr auto auto auto auto;align-items:center;gap:10px;padding:9px 6px;border-bottom:0.5px solid var(--border);transition:background .1s}
+
+/* member filter row */
+.mbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.mpill{font-size:11px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.mpill:hover{background:var(--bg3)}
+.mpill.active{background:var(--p-bg);color:var(--p-tx);border-color:var(--p-br)}
+
+/* section */
+.sec-hdr{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:14px 0 5px;border-bottom:0.5px solid var(--border);margin-bottom:2px}
+
+/* task row */
+.task{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:10px;padding:9px 6px;border-bottom:0.5px solid var(--border);transition:background .1s}
 .task:hover{background:var(--bg3)}
 .task.hidden{display:none}
 .tname{font-size:13px;line-height:1.4;color:var(--text)}
 .task.st-done .tname{text-decoration:line-through;color:var(--text3)}
+
+/* state selector */
 .state-sel{display:flex;border:0.5px solid var(--border2);border-radius:6px;overflow:hidden;flex-shrink:0}
 .state-sel button{font-size:11px;padding:3px 9px;border:none;background:transparent;cursor:pointer;color:var(--text2);transition:background .12s,color .12s;white-space:nowrap;border-right:0.5px solid var(--border2)}
 .state-sel button:last-child{border-right:none}
@@ -78,21 +95,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .state-sel button.s-prog.active{background:var(--a-bg);color:var(--a-tx)}
 .state-sel button.s-done.active{background:var(--g-bg);color:var(--g-tx)}
 .state-sel.locked button{cursor:default;opacity:.45;pointer-events:none}
+
+/* badges */
 .badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;border:0.5px solid;white-space:nowrap;flex-shrink:0}
-/* papel */
 .bl{background:var(--b-bg);color:var(--b-tx);border-color:var(--b-br)}
 .be{background:var(--g-bg);color:var(--g-tx);border-color:var(--g-br)}
 .bv{background:var(--a-bg);color:var(--a-tx);border-color:var(--a-br)}
-/* membro */
-.bm-pedro   {background:#EDE7F6;color:#4A148C;border-color:#AB47BC}
-.bm-alexandre{background:#E3F2FD;color:#0D47A1;border-color:#42A5F5}
-.bm-carlos  {background:#E8F5E9;color:#1B5E20;border-color:#66BB6A}
-.bm-kelvin  {background:#FFF3E0;color:#E65100;border-color:#FFA726}
-.bm-laurentino{background:#FCE4EC;color:#880E4F;border-color:#F06292}
-.bm-todos   {background:var(--bg3);color:var(--text2);border-color:var(--border2)}
-.dc{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0;min-width:56px;text-align:right}
+
+/* date chip */
+.dc{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0;min-width:52px;text-align:right}
 .dc.urg{color:var(--r-tx);font-weight:600}
 .dc.soon{color:var(--a-tx);font-weight:500}
+
+/* modal */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center}
 .overlay.show{display:flex}
 .modal{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--rad);padding:1.5rem;width:min(320px,90vw);display:flex;flex-direction:column;gap:12px}
@@ -106,78 +121,87 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
 .btn-c:hover{background:var(--bg3)}
 .btn-ok{font-size:13px;padding:6px 14px;border-radius:var(--rad-s);border:none;background:#1F3864;color:#fff;cursor:pointer;font-weight:500}
 .btn-ok:hover{background:#2E75B6}
+
+/* sync */
 .sync-bar{font-size:11px;color:var(--text3);text-align:center;padding:10px;margin-top:6px}
 .sync-err{color:var(--r-tx)}
 </style>
 </head>
 <body>
+
 <div class="hdr">
   <div class="hdr-row">
     <div>
-      <h1>Checklist e-fólio B — SimProgramming CodeZilla</h1>
-      <p>Gestor de Stock Doméstico &nbsp;·&nbsp; Json.NET &nbsp;·&nbsp; Tópicos 3 e 4 &nbsp;·&nbsp; Tarefas de equipa &nbsp;·&nbsp; Prazo interno: 29 abr</p>
+      <h1>Checklist e-fólio 3 — SimProgramming CodeZilla</h1>
+      <p>Gestor de Stock Doméstico &nbsp;·&nbsp; Json.NET &nbsp;·&nbsp; Tópicos 5 e 6 &nbsp;·&nbsp; Prazo final: 13 jun</p>
     </div>
     <div class="upd" id="upd-label">a carregar...</div>
   </div>
 </div>
+
 <div class="main">
+
+  <!-- stats -->
   <div class="stats">
     <div class="stat"><div class="lbl">Concluídas</div><div class="val vg" id="s-done">—</div></div>
     <div class="stat"><div class="lbl">Em progresso</div><div class="val va" id="s-prog">—</div></div>
     <div class="stat"><div class="lbl">Por iniciar</div><div class="val" id="s-todo">—</div></div>
-    <div class="stat"><div class="lbl">Pontos garantidos</div><div class="val vb" id="s-pts">—</div></div>
+    <div class="stat"><div class="lbl">Pontos monitorizados</div><div class="val vb" id="s-pts">—</div></div>
   </div>
-  <div class="tpbar">
-    <div class="tpbadge t3"><strong>Tópico 3</strong>6 – 19 de abril &nbsp;·&nbsp; Implementação com eventos e delegados</div>
-    <div class="tpbadge t4"><strong>Tópico 4</strong>20 abr – 3 mai &nbsp;·&nbsp; Testes e tratamento de erros com exceções</div>
-  </div>
+
+  <!-- progress -->
   <div class="prog-card">
-    <div class="prog-lbl"><span>Progresso geral do e-fólio B</span><span id="pct-label">0%</span></div>
+    <div class="prog-lbl">
+      <span>Progresso geral do e-fólio 3</span>
+      <span id="pct-label">0%</span>
+    </div>
     <div class="prog-track">
       <div class="prog-seg prog-done" id="bar-done" style="width:0%"></div>
       <div class="prog-seg prog-prog" id="bar-prog" style="width:0%"></div>
     </div>
   </div>
+
+  <!-- legend -->
   <div class="legend">
     <span style="font-weight:500;color:var(--text2)">Estados:</span>
     <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:var(--bg3);border:0.5px solid var(--border2)"></div><span>Por iniciar</span></div>
     <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:#EF9F27"></div><span>Em progresso</span></div>
     <div class="leg-item"><div style="width:10px;height:10px;border-radius:2px;background:#3B6D11"></div><span>Concluído</span></div>
-    <div class="leg-item"><span class="sec-tp tp3" style="margin:0">T3</span><span>Tópico 3</span></div>
-    <div class="leg-item"><span class="sec-tp tp4" style="margin:0">T4</span><span>Tópico 4</span></div>
   </div>
 
-  <!-- Filtros por papel/tópico -->
+  <!-- toolbar papel -->
   <div class="toolbar">
-    <span class="toolbar-label">Vista:</span>
     <button class="pill active" onclick="setFilter(this,'all')">Todas</button>
     <button class="pill" onclick="setFilter(this,'lider')">Líder</button>
     <button class="pill" onclick="setFilter(this,'equipa')">Equipa</button>
     <button class="pill" onclick="setFilter(this,'verificador')">Verificador</button>
-    <button class="pill" onclick="setFilter(this,'t3')">Tópico 3</button>
-    <button class="pill" onclick="setFilter(this,'t4')">Tópico 4</button>
     <button class="pill" onclick="setFilter(this,'pending')">Não concluídas</button>
     <div class="spacer"></div>
     <button class="lbtn" id="lbtn" onclick="toggleLeader()">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <rect x="3" y="7" width="10" height="7" rx="1.5"/>
+        <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+      </svg>
       <span id="lbtn-txt">Modo líder</span>
     </button>
   </div>
 
-  <!-- Filtros por membro -->
-  <div class="toolbar-row">
-    <span class="toolbar-label">Membro:</span>
-    <button class="pill" onclick="setMemberFilter(this,'pedro')">Pedro (Líder)</button>
-    <button class="pill" onclick="setMemberFilter(this,'alexandre')">Alexandre</button>
-    <button class="pill" onclick="setMemberFilter(this,'carlos')">Carlos</button>
-    <button class="pill" onclick="setMemberFilter(this,'kelvin')">Kelvin</button>
-    <button class="pill" onclick="setMemberFilter(this,'laurentino')">Laurentino</button>
-    <button class="pill active" onclick="setMemberFilter(this,'todos')">Todos</button>
+  <!-- toolbar membro -->
+  <div class="mbar">
+    <span style="font-size:11px;color:var(--text3);margin-right:2px">Membro:</span>
+    <button class="mpill active" onclick="setMember(this,'all')">Todos</button>
+    <button class="mpill" onclick="setMember(this,'pedro')">Pedro</button>
+    <button class="mpill" onclick="setMember(this,'alexandre')">Alexandre</button>
+    <button class="mpill" onclick="setMember(this,'carlos')">Carlos</button>
+    <button class="mpill" onclick="setMember(this,'kelvin')">Kelvin</button>
+    <button class="mpill" onclick="setMember(this,'laurentino')">Laurentino</button>
   </div>
 
   <div id="task-list"></div>
   <div class="sync-bar" id="sync-bar"></div>
 </div>
+
+<!-- modal -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <h2>Acesso do líder</h2>
@@ -190,218 +214,331 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fo
     </div>
   </div>
 </div>
-<script>
-const API = '/api/state';
-const ST  = {TODO:'todo',PROG:'prog',DONE:'done'};
 
-// ── TAREFAS ────────────────────────────────────────────────────
+<script>
+// ── API — password validada no servidor (Netlify Function) ───────────────────
+const API = '/api/state';
+const ST  = {TODO:'todo', PROG:'prog', DONE:'done'};
+
+// ── TAREFAS ──────────────────────────────────────────────────────────────────
 const sections = [
 
-  // ══ TÓPICO 3 — PLANEAMENTO ════════════════════════════════
-  {label:'Tópico 3 — Planeamento e coordenação', tp:'t3', tasks:[
-    {id:'t3-plan',
-      name:'Pedro — Planificação dos Tópicos 3 e 4 publicada no fórum da equipa (Moodle)',
-      role:'lider', member:'pedro', pts:0, date:'8 abr', init:ST.DONE},
-    {id:'t3-resp-alex',
-      name:'Alexandre — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
-      role:'equipa', member:'alexandre', pts:0, date:'10 abr'},
-    {id:'t3-resp-carlos',
-      name:'Carlos — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
-      role:'equipa', member:'carlos', pts:0, date:'10 abr'},
-    {id:'t3-resp-kelvin',
-      name:'Kelvin — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
-      role:'equipa', member:'kelvin', pts:0, date:'10 abr'},
-    {id:'t3-resp-laur',
-      name:'Laurentino — Avaliação da planificação: resposta no fórum da equipa (Moodle)',
-      role:'verificador', member:'laurentino', pts:0, date:'10 abr'},
-    {id:'t3-pv',
-      name:'Laurentino — Plano de verificações T3/T4 publicado no fórum (Moodle)',
-      role:'verificador', member:'laurentino', pts:0, date:'12 abr', init:ST.DONE},
+  // ══ T5 — LISTA DE DEPENDÊNCIAS ══════════════════════════════════════════
+  {label:'Tópico 5 — Lista de dependências (evolução dos componentes)', tp:'t5', tasks:[
+    {id:'t5-dep-alex',
+      name:'Alexandre — Lista de dependências do Model: passagens de dados e tipos concretos',
+      role:'equipa', member:'alexandre', pts:0, date:'6 mai'},
+    {id:'t5-dep-carlos',
+      name:'Carlos — Lista de dependências da View: eventos, dados recebidos e enviados',
+      role:'equipa', member:'carlos', pts:0, date:'6 mai'},
+    {id:'t5-dep-kelvin',
+      name:'Kelvin — Lista de dependências do Controller: handlers, parâmetros e retornos',
+      role:'equipa', member:'kelvin', pts:0, date:'6 mai'},
+    {id:'t5-dep-laur',
+      name:'Laurentino — Revisão da lista consolidada: fluxos MVC em falta ou mal classificados',
+      role:'verificador', member:'laurentino', pts:0, date:'7 mai'},
+    {id:'t5-dep-pedro',
+      name:'Pedro — Consolidar no Template Sala de Desenvolvimento 4040 e publicar no fórum (0,05pt)',
+      role:'lider', member:'pedro', pts:0.05, date:'8 mai'},
   ]},
 
-  // ══ TÓPICO 3 — DISTRIBUIÇÃO DE COMPONENTES ═══════════════
-  {label:'Tópico 3 — Distribuição de componentes MVC', tp:'t3', tasks:[
-    {id:'t3-comp-pedro',
-      name:'Pedro — Estrutura base da aplicação: definição estrutura base da aplicação: ligação de eventos entre componentes e integração geral',
-      role:'lider', member:'pedro', pts:0, date:'16 abr'},
-    {id:'t3-comp-alex',
-      name:'Alexandre — Componente Model: lógica de negócio + persistência JSON (Json.NET)',
-      role:'equipa', member:'alexandre', pts:0, date:'16 abr'},
-    {id:'t3-comp-carlos',
-      name:'Carlos — Componente View: input do utilizador + apresentação de resultados',
-      role:'equipa', member:'carlos', pts:0, date:'16 abr'},
-    {id:'t3-comp-kelvin',
-      name:'Kelvin — Componente Controller: coordenação do fluxo da aplicação (View → Model → View)',
-      role:'equipa', member:'kelvin', pts:0, date:'16 abr'},
-    {id:'t3-comp-laur',
-      name:'Laurentino — Verificação de conformidade MVC + apoio à validação e testes de integração entre componentes',
-      role:'verificador', member:'laurentino', pts:0, date:'16 abr'},
+  // ══ T5 — ANÁLISE DAS DEPENDÊNCIAS ═══════════════════════════════════════
+  {label:'Tópico 5 — Análise das dependências (relatório)', tp:'t5', tasks:[
+    {id:'t5-rel-alex',
+      name:'Alexandre — Secção Model: dependência em Produto/List<Produto>, impacto e proposta IProduto',
+      role:'equipa', member:'alexandre', pts:0, date:'10 mai'},
+    {id:'t5-rel-carlos',
+      name:'Carlos — Secção View: dependência em Produto/List<Produto>, proposta IEnumerable<IProduto> e IResultadoOperacao',
+      role:'equipa', member:'carlos', pts:0, date:'10 mai'},
+    {id:'t5-rel-kelvin',
+      name:'Kelvin — Secção Controller: acoplamento a classes concretas, proposta IGestorStock/IStockModel',
+      role:'equipa', member:'kelvin', pts:0, date:'10 mai'},
+    {id:'t5-rel-laur',
+      name:'Laurentino — Revisão de classificações e secção de verificação do relatório',
+      role:'verificador', member:'laurentino', pts:0, date:'11 mai'},
+    {id:'t5-rel-pedro',
+      name:'Pedro — Introdução, conclusão, integração e submissão Moodle (0,15pt)',
+      role:'lider', member:'pedro', pts:0.15, date:'12 mai'},
   ]},
 
-  // ══ TÓPICO 3 — IMPLEMENTAÇÃO ══════════════════════════════
-  {label:'Tópico 3 — Implementação (eventos e delegados)', tp:'t3', tasks:[
-    {id:'t3-proto',
-      name:'Pedro — Coordenação e integração do protótipo com eventos e delegados (Curry & Grace — input na View), com contributos dos responsáveis pelos componentes Model, View e Controller — publicado no Discord',
-      role:'lider', member:'pedro', pts:0, date:'16 abr'},
-    {id:'t3-flux',
-      name:'Pedro — Análise da alternativa arquitetónica (K&P) e justificação fundamentada da decisão de manter a arquitetura submetida (Curry & Grace) (Moodle)',
-      role:'lider', member:'pedro', pts:0.30, date:'16 abr'},
-    {id:'t3-forum',
-      name:'Pedro — Fórum: submissão de 1–2 casos curtos de implementação utilizando eventos e delegados (Moodle)',
-      role:'lider', member:'pedro', pts:0.15, date:'17 abr'},
-    {id:'t3-ps',
-      name:'Pedro — Ponto de situação Tópico 3: estado de cada membro (fórum equipa Moodle)',
-      role:'lider', member:'pedro', pts:0, date:'17 abr'},
+  // ══ T5 — DESENVOLVIMENTO DE INTERFACES ══════════════════════════════════
+  {label:'Tópico 5 — Desenvolvimento de interfaces (fórum)', tp:'t5', tasks:[
+    {id:'t5-ifc-pedro',
+      name:'Pedro — Publicar proposta de interface no fórum: IGestorStock/IStockModel ou IProduto (0,05pt)',
+      role:'lider', member:'pedro', pts:0.05, date:'13 mai'},
+    {id:'t5-ifc-alex',
+      name:'Alexandre — Comentar proposta de outra equipa focando dados/Model',
+      role:'equipa', member:'alexandre', pts:0, date:'15 mai'},
+    {id:'t5-ifc-carlos',
+      name:'Carlos — Comentar proposta de outra equipa focando View e mensagens',
+      role:'equipa', member:'carlos', pts:0, date:'15 mai'},
+    {id:'t5-ifc-kelvin',
+      name:'Kelvin — Comentar proposta de outra equipa focando Controller e eventos',
+      role:'equipa', member:'kelvin', pts:0, date:'15 mai'},
+    {id:'t5-ifc-laur',
+      name:'Laurentino — Comentar proposta de outra equipa focando acoplamento e verificação',
+      role:'verificador', member:'laurentino', pts:0, date:'15 mai'},
   ]},
 
-  // ══ TÓPICO 3 — GITHUB ═════════════════════════════════════
-  {label:'Tópico 3 — Repositório GitHub', tp:'t3', tasks:[
-    {id:'t3-git-alex',
-      name:'Alexandre — Código do componente Model publicado no repositório GitHub',
-      role:'equipa', member:'alexandre', pts:0, date:'18 abr'},
-    {id:'t3-git-carlos',
-      name:'Carlos — Código do componente View publicado no repositório GitHub',
-      role:'equipa', member:'carlos', pts:0, date:'18 abr'},
-    {id:'t3-git-kelvin',
-      name:'Kelvin — Código do componente Controller publicado no repositório GitHub',
-      role:'equipa', member:'kelvin', pts:0, date:'18 abr'},
-    {id:'t3-boss',
-      name:'Pedro — CEO e CTO da SimProgramming convidados como colaboradores (GitHub Settings)',
-      role:'lider', member:'pedro', pts:0, date:'18 abr', init:ST.DONE},
-    {id:'t3-url',
-      name:'Pedro — Auto-organização: URL do repositório submetido no Moodle',
-      role:'lider', member:'pedro', pts:0.55, date:'19 abr'},
+  // ══ T5 — MÃOS À MASSA — IMPLEMENTAÇÃO ═══════════════════════════════════
+  {label:'Tópico 5 — Mãos à massa com as interfaces (código)', tp:'t5', tasks:[
+    {id:'t5-cod-alex',
+      name:'Alexandre — IProduto em Contracts/Interfaces; Produto implementa IProduto; retornos adaptados para IEnumerable<IProduto>',
+      role:'equipa', member:'alexandre', pts:0, date:'14 mai'},
+    {id:'t5-cod-carlos',
+      name:'Carlos — View adaptada para usar IProduto e IResultadoOperacao; sem acesso directo ao namespace Model',
+      role:'equipa', member:'carlos', pts:0, date:'14 mai'},
+    {id:'t5-cod-kelvin',
+      name:'Kelvin — Controller adaptado: handlers usam IGestorStock/IStockModel e IProduto em vez de classes concretas',
+      role:'equipa', member:'kelvin', pts:0, date:'14 mai'},
+    {id:'t5-cod-pr-alex',
+      name:'Alexandre — PR do Model criado no GitHub: sem push directo para main',
+      role:'equipa', member:'alexandre', pts:0, date:'15 mai'},
+    {id:'t5-cod-pr-carlos',
+      name:'Carlos — PR da View criado no GitHub: sem push directo para main',
+      role:'equipa', member:'carlos', pts:0, date:'15 mai'},
+    {id:'t5-cod-pr-kelvin',
+      name:'Kelvin — PR do Controller criado no GitHub: sem push directo para main',
+      role:'equipa', member:'kelvin', pts:0, date:'15 mai'},
+    {id:'t5-cod-laur',
+      name:'Laurentino — Verificar: compilação, execução, interfaces em uso real, MVC mantido, PRs coerentes',
+      role:'verificador', member:'laurentino', pts:0, date:'16 mai'},
+    {id:'t5-cod-pedro',
+      name:'Pedro — Merge, validação final e submissão Moodle (0,75pt)',
+      role:'lider', member:'pedro', pts:0.75, date:'17 mai'},
   ]},
 
-  // ══ TÓPICO 4 — REFACTORAÇÃO E CORREÇÕES PÓS-T3 ═══════════
-  {label:'Tópico 4 — Refactorização e correções pós-T3', tp:'t4', tasks:[
-    {id:'t4-merge-pr13',
-      name:'Pedro — Merge do PR #13 (Model) na branch principal',
-      role:'lider', member:'pedro', pts:0, date:'20 abr'},
-    {id:'t4-csproj-fix',
-      name:'Pedro — Correção do .csproj: adicionar dependência Newtonsoft.Json',
-      role:'lider', member:'pedro', pts:0, date:'20 abr'},
-    {id:'t4-plan-efolioB',
-      name:'Pedro — Planificação formal do e-fólio B no fórum da equipa (Moodle)',
-      role:'lider', member:'pedro', pts:0, date:'22 abr'},
-    {id:'t4-reverif-laur',
-      name:'Laurentino — Reverificação do Model pós-merge e do .csproj corrigido',
-      role:'verificador', member:'laurentino', pts:0, date:'22 abr'},
-    {id:'t4-refac-kelvin',
-      name:'Kelvin — Refactorização do Controller: mediar View → Controller → Model nos fluxos de consulta e reposição',
-      role:'equipa', member:'kelvin', pts:0, date:'24 abr'},
-    {id:'t4-menu-kelvin',
-      name:'Kelvin/Carlos — Correção do ciclo recursivo do menu e da reapresentação duplicada em casos de erro',
-      role:'equipa', member:('kelvin','carlos'), pts:0, date:'24 abr'},
-    {id:'t4-exit-kelvin',
-      name:'Kelvin — Substituição de Environment.Exit(0) por mecanismo de fecho controlado (compatível com testes)',
-      role:'equipa', member:'kelvin', pts:0, date:'25 abr'},
+  // ══ T5 — TAREFAS INDIVIDUAIS ═════════════════════════════════════════════
+  {label:'Tópico 5 — Tarefas individuais (cada elemento)', tp:'t5', tasks:[
+    {id:'t5-ind-pedro-impl',
+      name:'Pedro — Reflexões sobre o processo de implementação (teste)',
+      role:'lider', member:'pedro', pts:0.05, date:'10 mai'},
+    {id:'t5-ind-alex-impl',
+      name:'Alexandre — Reflexões sobre o processo de implementação (teste)',
+      role:'equipa', member:'alexandre', pts:0.05, date:'10 mai'},
+    {id:'t5-ind-carlos-impl',
+      name:'Carlos — Reflexões sobre o processo de implementação (teste)',
+      role:'equipa', member:'carlos', pts:0.05, date:'10 mai'},
+    {id:'t5-ind-kelvin-impl',
+      name:'Kelvin — Reflexões sobre o processo de implementação (teste)',
+      role:'equipa', member:'kelvin', pts:0.05, date:'10 mai'},
+    {id:'t5-ind-laur-impl',
+      name:'Laurentino — Reflexões sobre o processo de implementação (teste)',
+      role:'verificador', member:'laurentino', pts:0.05, date:'10 mai'},
+    {id:'t5-ind-pedro-mask',
+      name:'Pedro — Máscaras para componentes — as interfaces (teste)',
+      role:'lider', member:'pedro', pts:0.05, date:'14 mai'},
+    {id:'t5-ind-alex-mask',
+      name:'Alexandre — Máscaras para componentes — as interfaces (teste)',
+      role:'equipa', member:'alexandre', pts:0.05, date:'14 mai'},
+    {id:'t5-ind-carlos-mask',
+      name:'Carlos — Máscaras para componentes — as interfaces (teste)',
+      role:'equipa', member:'carlos', pts:0.05, date:'14 mai'},
+    {id:'t5-ind-kelvin-mask',
+      name:'Kelvin — Máscaras para componentes — as interfaces (teste)',
+      role:'equipa', member:'kelvin', pts:0.05, date:'14 mai'},
+    {id:'t5-ind-laur-mask',
+      name:'Laurentino — Máscaras para componentes — as interfaces (teste)',
+      role:'verificador', member:'laurentino', pts:0.05, date:'14 mai'},
+    {id:'t5-ind-pedro-indep',
+      name:'Pedro — Reflexões sobre a independência de componentes (fórum)',
+      role:'lider', member:'pedro', pts:0.05, date:'15 mai'},
+    {id:'t5-ind-alex-indep',
+      name:'Alexandre — Reflexões sobre a independência de componentes (fórum)',
+      role:'equipa', member:'alexandre', pts:0.05, date:'15 mai'},
+    {id:'t5-ind-carlos-indep',
+      name:'Carlos — Reflexões sobre a independência de componentes (fórum)',
+      role:'equipa', member:'carlos', pts:0.05, date:'15 mai'},
+    {id:'t5-ind-kelvin-indep',
+      name:'Kelvin — Reflexões sobre a independência de componentes (fórum)',
+      role:'equipa', member:'kelvin', pts:0.05, date:'15 mai'},
+    {id:'t5-ind-laur-indep',
+      name:'Laurentino — Reflexões sobre a independência de componentes (fórum)',
+      role:'verificador', member:'laurentino', pts:0.05, date:'15 mai'},
+    {id:'t5-ind-pedro-uso',
+      name:'Pedro — Como estou a utilizar as interfaces? (teste)',
+      role:'lider', member:'pedro', pts:0.05, date:'17 mai'},
+    {id:'t5-ind-alex-uso',
+      name:'Alexandre — Como estou a utilizar as interfaces? (teste)',
+      role:'equipa', member:'alexandre', pts:0.05, date:'17 mai'},
+    {id:'t5-ind-carlos-uso',
+      name:'Carlos — Como estou a utilizar as interfaces? (teste)',
+      role:'equipa', member:'carlos', pts:0.05, date:'17 mai'},
+    {id:'t5-ind-kelvin-uso',
+      name:'Kelvin — Como estou a utilizar as interfaces? (teste)',
+      role:'equipa', member:'kelvin', pts:0.05, date:'17 mai'},
+    {id:'t5-ind-laur-uso',
+      name:'Laurentino — Como estou a utilizar as interfaces? (teste)',
+      role:'verificador', member:'laurentino', pts:0.05, date:'17 mai'},
   ]},
 
-  // ══ TÓPICO 4 — PLANO DE TESTES ════════════════════════════
-  {label:'Tópico 4 — Plano de testes', tp:'t4', tasks:[
-    {id:'t4-mint',
-      name:'Laurentino — Minuta de testes analisada e partilhada com a equipa (Excel)',
-      role:'verificador', member:'laurentino', pts:0, date:'22 abr', init:ST.DONE},
-    {id:'t4-testes-alex',
-      name:'Alexandre — Testes para o componente Model identificados e documentados',
-      role:'equipa', member:'alexandre', pts:0, date:'24 abr'},
-    {id:'t4-testes-carlos',
-      name:'Carlos — Testes para o componente View identificados e documentados',
-      role:'equipa', member:'carlos', pts:0, date:'24 abr'},
-    {id:'t4-testes-kelvin',
-      name:'Kelvin — Testes para o componente Controller identificados e documentados',
-      role:'equipa', member:'kelvin', pts:0, date:'24 abr'},
-    {id:'t4-plan',
-      name:'Laurentino — Mapear os testes: plano de testes preenchido com base na minuta (Moodle)',
-      role:'verificador', member:'laurentino', pts:0.30, date:'28 abr'},
+  // ══ T6 — APRESENTAÇÃO ════════════════════════════════════════════════════
+  {label:'Tópico 6 — Apresentação da aplicação demonstradora (fórum)', tp:'t6', tasks:[
+    {id:'t6-ap-s1',
+      name:'Pedro — Slide 1: projecto, problema, API Json.NET',
+      role:'lider', member:'pedro', pts:0, date:'4 jun'},
+    {id:'t6-ap-s2-laur',
+      name:'Laurentino — Contributo para slide 2: arquitectura MVC e separação de responsabilidades',
+      role:'verificador', member:'laurentino', pts:0, date:'4 jun'},
+    {id:'t6-ap-s2-pedro',
+      name:'Pedro — Contributo para slide 2: arquitectura MVC e separação de responsabilidades',
+      role:'lider', member:'pedro', pts:0, date:'4 jun'},
+    {id:'t6-ap-s3',
+      name:'Kelvin — Slide 3: eventos e delegados',
+      role:'equipa', member:'kelvin', pts:0, date:'4 jun'},
+    {id:'t6-ap-s4',
+      name:'Carlos — Slide 4: excepções e reacção a erros',
+      role:'equipa', member:'carlos', pts:0, date:'4 jun'},
+    {id:'t6-ap-s5-alex',
+      name:'Alexandre — Contributo para slide 5: interfaces e dependências reduzidas',
+      role:'equipa', member:'alexandre', pts:0, date:'4 jun'},
+    {id:'t6-ap-s5-kelvin',
+      name:'Kelvin — Contributo para slide 5: interfaces e dependências reduzidas',
+      role:'equipa', member:'kelvin', pts:0, date:'4 jun'},
+    {id:'t6-ap-s6',
+      name:'Pedro — Slide 6: conclusões, limitações e aprendizagens',
+      role:'lider', member:'pedro', pts:0, date:'5 jun'},
+    {id:'t6-ap-pub',
+      name:'Pedro — Rever os 6 slides e publicar no fórum (0,40pt)',
+      role:'lider', member:'pedro', pts:0.40, date:'7 jun'},
+    {id:'t6-ap-alex',
+      name:'Alexandre — Comentar apresentação de outra equipa focando domínio/API Json.NET',
+      role:'equipa', member:'alexandre', pts:0, date:'10 jun'},
+    {id:'t6-ap-carlos',
+      name:'Carlos — Comentar apresentação de outra equipa focando View, UX e clareza para o utilizador',
+      role:'equipa', member:'carlos', pts:0, date:'10 jun'},
+    {id:'t6-ap-kelvin',
+      name:'Kelvin — Comentar apresentação de outra equipa focando fluxo MVC e eventos',
+      role:'equipa', member:'kelvin', pts:0, date:'10 jun'},
+    {id:'t6-ap-laur',
+      name:'Laurentino — Comentar apresentação de outra equipa focando conformidade e testes',
+      role:'verificador', member:'laurentino', pts:0, date:'10 jun'},
   ]},
 
-  // ══ TÓPICO 4 — ERROS E APLICAÇÃO FINAL ═══════════════════
-  {label:'Tópico 4 — Tratamento de erros e aplicação final', tp:'t4', tasks:[
-    {id:'t4-exc-alex',
-      name:'Alexandre — Exceções no Model: stock insuficiente, JSON inválido, produto não encontrado',
-      role:'equipa', member:'alexandre', pts:0, date:'25 abr'},
-    {id:'t4-exc-carlos',
-      name:'Carlos — Exceções na View: tratamento de inputs inválidos do utilizador',
-      role:'equipa', member:'carlos', pts:0, date:'25 abr'},
-    {id:'t4-exc-kelvin',
-      name:'Kelvin — Exceções no Controller: propagação e encaminhamento de erros do fluxo MVC',
-      role:'equipa', member:'kelvin', pts:0, date:'25 abr'},
-    {id:'t4-exc-laur',
-      name:'Laurentino — Verificação: exceções implementadas respeitam o estilo MVC em todos os componentes',
-      role:'verificador', member:'laurentino', pts:0, date:'26 abr'},
-    {id:'t4-coer-laur',
-      name:'Laurentino — Verificação final: coerência entre diagramas, código e decisões arquitetónicas',
-      role:'verificador', member:'laurentino', pts:0, date:'27 abr'},
-    {id:'t4-forum',
-      name:'Pedro — Controlar os erros: fórum como foram usadas exceções em MVC (Moodle)',
-      role:'lider', member:'pedro', pts:0.10, date:'28 abr'},
-    {id:'t4-app',
-      name:'Pedro — Submissão do código final com tratamento de exceções (Moodle)',
-      role:'lider', member:'pedro', pts:1.00, date:'29 abr'},
+  // ══ T6 — RELATÓRIO FINAL ════════════════════════════════════════════════
+  {label:'Tópico 6 — Relatório final da aplicação demonstradora', tp:'t6', tasks:[
+    {id:'t6-rel-carlos',
+      name:'Carlos — Secção 2 (descrição funcional) e contributo para secção 5 (excepções)',
+      role:'equipa', member:'carlos', pts:0, date:'5 jun'},
+    {id:'t6-rel-kelvin',
+      name:'Kelvin — Secção 4 (eventos/delegados) e contributo para secção 6 (interfaces)',
+      role:'equipa', member:'kelvin', pts:0, date:'5 jun'},
+    {id:'t6-rel-alex',
+      name:'Alexandre — Contributo para secção 6 (interfaces) e secção 2 (domínio de dados)',
+      role:'equipa', member:'alexandre', pts:0, date:'5 jun'},
+    {id:'t6-rel-laur',
+      name:'Laurentino — Secção 5 (excepções) e secção 7 (testes e verificações)',
+      role:'verificador', member:'laurentino', pts:0, date:'6 jun'},
+    {id:'t6-rel-rev-laur',
+      name:'Laurentino — Revisão técnica e de coerência do relatório',
+      role:'verificador', member:'laurentino', pts:0, date:'8 jun'},
+    {id:'t6-rel-rev-pedro',
+      name:'Pedro — Revisão final de coerência do relatório antes da submissão',
+      role:'lider', member:'pedro', pts:0, date:'8 jun'},
+    {id:'t6-rel-pedro',
+      name:'Pedro — Introdução, arquitectura MVC, conclusão, contributos individuais e submissão Moodle (1,20pt)',
+      role:'lider', member:'pedro', pts:1.20, date:'13 jun'},
   ]},
 
-  // ══ TÓPICO 4 — AFERIÇÃO FINAL ═════════════════════════════
-  {label:'Tópico 4 — Aferição final e reflexão individual — e-fólio B', tp:'t4', tasks:[
-    {id:'t4-ps',
-      name:'Pedro — Ponto de situação Tópico 4 (fórum equipa Moodle)',
-      role:'lider', member:'pedro', pts:0, date:'28 abr'},
-    {id:'t4-vres',
-      name:'Laurentino — Resultados das verificações publicados (fórum equipa Moodle)',
-      role:'verificador', member:'laurentino', pts:0, date:'29 abr'},
-    {id:'t4-afer',
-      name:'Pedro — Aferição final do e-fólio B (fórum equipa Moodle)',
-      role:'lider', member:'pedro', pts:0, date:'29 abr'},
-    {id:'t4-dev-alex',
-      name:'Alexandre — Reflexão individual sobre contribuição e aferição da situação final (fórum equipa Moodle)',
-      role:'equipa', member:'alexandre', pts:0, date:'29 abr'},
-    {id:'t4-dev-carlos',
-      name:'Carlos — Reflexão individual sobre contribuição e aferição da situação final (fórum equipa Moodle)',
-      role:'equipa', member:'carlos', pts:0, date:'29 abr'},
-    {id:'t4-dev-kelvin',
-      name:'Kelvin — Reflexão individual sobre contribuição e aferição da situação final (fórum equipa Moodle)',
-      role:'equipa', member:'kelvin', pts:0, date:'29 abr'},
+  // ══ T6 — TAREFAS INDIVIDUAIS ═════════════════════════════════════════════
+  {label:'Tópico 6 — Tarefas individuais (cada elemento)', tp:'t6', tasks:[
+    {id:'t6-ind-pedro-eq',
+      name:'Pedro — Está quase! Reflexões na reta final (teste)',
+      role:'lider', member:'pedro', pts:0.05, date:'22 mai'},
+    {id:'t6-ind-alex-eq',
+      name:'Alexandre — Está quase! Reflexões na reta final (teste)',
+      role:'equipa', member:'alexandre', pts:0.05, date:'22 mai'},
+    {id:'t6-ind-carlos-eq',
+      name:'Carlos — Está quase! Reflexões na reta final (teste)',
+      role:'equipa', member:'carlos', pts:0.05, date:'22 mai'},
+    {id:'t6-ind-kelvin-eq',
+      name:'Kelvin — Está quase! Reflexões na reta final (teste)',
+      role:'equipa', member:'kelvin', pts:0.05, date:'22 mai'},
+    {id:'t6-ind-laur-eq',
+      name:'Laurentino — Está quase! Reflexões na reta final (teste)',
+      role:'verificador', member:'laurentino', pts:0.05, date:'22 mai'},
+    {id:'t6-ind-pedro-lc',
+      name:'Pedro — Linha de chegada! Como foi o percurso na SimProgramming? (teste)',
+      role:'lider', member:'pedro', pts:0.15, date:'13 jun'},
+    {id:'t6-ind-alex-lc',
+      name:'Alexandre — Linha de chegada! Como foi o percurso na SimProgramming? (teste)',
+      role:'equipa', member:'alexandre', pts:0.15, date:'13 jun'},
+    {id:'t6-ind-carlos-lc',
+      name:'Carlos — Linha de chegada! Como foi o percurso na SimProgramming? (teste)',
+      role:'equipa', member:'carlos', pts:0.15, date:'13 jun'},
+    {id:'t6-ind-kelvin-lc',
+      name:'Kelvin — Linha de chegada! Como foi o percurso na SimProgramming? (teste)',
+      role:'equipa', member:'kelvin', pts:0.15, date:'13 jun'},
+    {id:'t6-ind-laur-lc',
+      name:'Laurentino — Linha de chegada! Como foi o percurso na SimProgramming? (teste)',
+      role:'verificador', member:'laurentino', pts:0.15, date:'13 jun'},
+  ]},
+
+  // ══ CHECKLIST QUALIDADE ══════════════════════════════════════════════════
+  {label:'Checklist de qualidade — verificar antes das submissões', tp:'t5', tasks:[
+    {id:'q-jsonnet',
+      name:'Relatório e apresentação identificam Json.NET como API confirmada',
+      role:'lider', member:'pedro', pts:0, date:'13 jun'},
+    {id:'q-ifc-ns',
+      name:'Interfaces em namespace Contracts/Interfaces — não dentro do Model',
+      role:'verificador', member:'laurentino', pts:0, date:'17 mai'},
+    {id:'q-produto',
+      name:'Produto implementa IProduto; IProduto expõe Quantidade apenas com get',
+      role:'verificador', member:'laurentino', pts:0, date:'17 mai'},
+    {id:'q-lista',
+      name:'List<Produto> substituído por IEnumerable<IProduto> onde aplicável',
+      role:'verificador', member:'laurentino', pts:0, date:'17 mai'},
+    {id:'q-mvc',
+      name:'View não acede directamente ao Model — MVC mantido após refactorização',
+      role:'verificador', member:'laurentino', pts:0, date:'17 mai'},
+    {id:'q-compila',
+      name:'Código compila e executa sem erros antes de cada submissão',
+      role:'verificador', member:'laurentino', pts:0, date:'17 mai'},
+    {id:'q-contrib',
+      name:'Relatório final explicita contributos individuais de cada elemento',
+      role:'lider', member:'pedro', pts:0, date:'13 jun'},
   ]},
 ];
 
-// inicializar estados
-sections.forEach(s=>s.tasks.forEach(t=>{if(!t.init)t.init=ST.TODO;}));
+// ── estado ───────────────────────────────────────────────────────────────────
+sections.forEach(s => s.tasks.forEach(t => { if(!t.init) t.init = ST.TODO; }));
 
-let state={}, isLeader=false, leaderPw='', filter='all', memberFilter='todos';
+let state    = {};
+let isLeader = false;
+let leaderPw = '';
+let filter   = 'all';
+let memberF  = 'all';
 
-// ── datas ─────────────────────────────────────────────────────
+// ── datas ────────────────────────────────────────────────────────────────────
 function parseDt(d){
-  if(!d)return null;
-  const meses={jan:0,fev:1,mar:2,abr:3,mai:4,jun:5,jul:6,ago:7,set:8,out:9,nov:10,dez:11};
-  const m=d.match(/(\d+)\s+(\w+)/);
-  if(!m)return null;
-  return new Date(2026, meses[m[2]]??3, +m[1]);
+  if(!d) return null;
+  const m = d.match(/(\d+)\s+(mai|jun)/);
+  if(!m) return null;
+  return new Date(2026, m[2]==='mai'?4:5, +m[1]);
 }
 function dtClass(d){
-  const dt=parseDt(d);if(!dt)return'';
+  const dt=parseDt(d); if(!dt) return '';
   const diff=Math.round((dt-new Date())/86400000);
   return diff<0||diff<=2?'urg':diff<=5?'soon':'';
 }
 
-// ── storage ───────────────────────────────────────────────────
+// ── storage ──────────────────────────────────────────────────────────────────
 async function loadState(){
   setSyncBar('A carregar...');
   try{
     const r=await fetch(API);
-    if(!r.ok)throw 0;
+    if(!r.ok) throw 0;
     const d=await r.json();
-    Object.assign(state,d.state||{});
+    Object.assign(state, d.state||{});
     const ts=d.updatedAt?new Date(d.updatedAt).toLocaleString('pt-PT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
     document.getElementById('upd-label').textContent='Actualizado: '+ts;
     setSyncBar('');
   }catch(e){
     setSyncBar('Servidor não disponível. A usar estado local.',true);
-    try{const s=localStorage.getItem('cz-b-state');if(s)Object.assign(state,JSON.parse(s));}catch(_){}
+    try{const s=localStorage.getItem('cz-efolio3');if(s)Object.assign(state,JSON.parse(s));}catch(_){}
     document.getElementById('upd-label').textContent='Estado local';
   }
 }
-
 async function saveState(){
   setSyncBar('A guardar...');
   try{
@@ -411,58 +548,50 @@ async function saveState(){
       body:JSON.stringify({state}),
     });
     if(r.status===401){setSyncBar('Password incorrecta no servidor.',true);return;}
-    if(!r.ok)throw 0;
+    if(!r.ok) throw 0;
     const ts=new Date().toLocaleString('pt-PT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
     document.getElementById('upd-label').textContent='Guardado: '+ts;
     setSyncBar('Guardado e sincronizado.');
     setTimeout(()=>setSyncBar(''),3000);
   }catch(e){
-    try{localStorage.setItem('cz-b-state',JSON.stringify(state));}catch(_){}
+    try{localStorage.setItem('cz-efolio3',JSON.stringify(state));}catch(_){}
     setSyncBar('Erro no servidor. Estado guardado localmente.',true);
   }
 }
-
 function setSyncBar(msg,err){
   const el=document.getElementById('sync-bar');
   el.className='sync-bar'+(err?' sync-err':'');
   el.textContent=msg;
 }
 
+// ── init ─────────────────────────────────────────────────────────────────────
 function initState(){
   sections.forEach(s=>s.tasks.forEach(t=>{if(!(t.id in state))state[t.id]=t.init;}));
 }
 
-// ── badges ────────────────────────────────────────────────────
-const ROLE_CLS ={lider:'bl',equipa:'be',verificador:'bv'};
-const ROLE_LBL ={lider:'Líder',equipa:'Equipa',verificador:'Verificador'};
-const MEMBER_CLS={pedro:'bm-pedro',alexandre:'bm-alexandre',carlos:'bm-carlos',kelvin:'bm-kelvin',laurentino:'bm-laurentino',todos:'bm-todos'};
-const MEMBER_LBL={pedro:'Pedro',alexandre:'Alexandre',carlos:'Carlos',kelvin:'Kelvin',laurentino:'Laurentino',todos:'Todos'};
-
-// ── render ────────────────────────────────────────────────────
+// ── render ───────────────────────────────────────────────────────────────────
 function render(){
   const list=document.getElementById('task-list');
   list.innerHTML='';
   sections.forEach(sec=>{
     const hdr=document.createElement('div');
     hdr.className='sec-hdr';
-    const span=document.createElement('span');span.textContent=sec.label;
-    const badge=document.createElement('span');
-    badge.className='sec-tp '+(sec.tp==='t3'?'tp3':'tp4');
-    badge.textContent=sec.tp==='t3'?'T3':'T4';
-    hdr.appendChild(span);hdr.appendChild(badge);
+    hdr.textContent=sec.label;
     list.appendChild(hdr);
-    sec.tasks.forEach(t=>list.appendChild(makeRow(t,sec.tp)));
+    sec.tasks.forEach(t=>list.appendChild(makeRow(t)));
   });
   updateStats();
 }
 
-function makeRow(t,tp){
+function makeRow(t){
   const st=state[t.id]||ST.TODO;
   const row=document.createElement('div');
-  row.className='task st-'+st+(filterHides(t,tp)?' hidden':'');
-  row.dataset.id=t.id;row.dataset.role=t.role;row.dataset.member=t.member||'todos';row.dataset.st=st;row.dataset.tp=tp;
+  row.className='task st-'+st+(filterHides(t)?' hidden':'');
+  row.dataset.id=t.id; row.dataset.role=t.role;
+  row.dataset.member=t.member||''; row.dataset.st=st;
 
-  const nm=document.createElement('span');nm.className='tname';nm.textContent=t.name;
+  const nm=document.createElement('span');
+  nm.className='tname'; nm.textContent=t.name;
 
   const sel=document.createElement('div');
   sel.className='state-sel'+(isLeader?'':' locked');
@@ -476,27 +605,23 @@ function makeRow(t,tp){
     sel.appendChild(btn);
   });
 
-  // badge papel
   const bdg=document.createElement('span');
-  bdg.className='badge '+(ROLE_CLS[t.role]||'bl');
-  bdg.textContent=ROLE_LBL[t.role]||t.role;
-
-  // badge membro
-  const mbdg=document.createElement('span');
-  const mem=t.member||'todos';
-  mbdg.className='badge '+(MEMBER_CLS[mem]||'bm-todos');
-  mbdg.textContent=MEMBER_LBL[mem]||mem;
+  const bmap={lider:'bl',equipa:'be',verificador:'bv'};
+  const blbl={lider:'Líder',equipa:'Equipa',verificador:'Verificador'};
+  bdg.className='badge '+(bmap[t.role]||'bl');
+  bdg.textContent=blbl[t.role]||t.role;
 
   const dc=document.createElement('span');
   dc.className='dc '+(t.date?dtClass(t.date):'');
-  dc.textContent=(t.date||'')+(t.pts>0?' · '+t.pts.toFixed(2).replace('.',',')+'pt':'');
+  const ptStr=t.pts>0?' · '+t.pts.toFixed(2).replace('.',',')+'pt':'';
+  dc.textContent=(t.date||'')+ptStr;
 
-  row.appendChild(nm);row.appendChild(sel);row.appendChild(bdg);row.appendChild(mbdg);row.appendChild(dc);
+  row.appendChild(nm); row.appendChild(sel); row.appendChild(bdg); row.appendChild(dc);
   return row;
 }
 
 function setState(id,newSt){
-  if(!isLeader)return;
+  if(!isLeader) return;
   state[id]=newSt;
   const row=document.querySelector(`.task[data-id="${id}"]`);
   if(row){
@@ -506,55 +631,45 @@ function setState(id,newSt){
       btn.classList.toggle('active',
         (newSt===ST.TODO&&btn.classList.contains('s-todo'))||
         (newSt===ST.PROG&&btn.classList.contains('s-prog'))||
-        (newSt===ST.DONE&&btn.classList.contains('s-done')));
+        (newSt===ST.DONE&&btn.classList.contains('s-done'))
+      );
     });
-    if(filter==='pending'&&newSt===ST.DONE)row.classList.add('hidden');
+    if(filter==='pending'&&newSt===ST.DONE) row.classList.add('hidden');
   }
-  saveState();updateStats();
+  saveState();
+  updateStats();
 }
 
-function filterHides(t,tp){
-  // filtro de membro
-  if(memberFilter!=='todos' && t.member!==memberFilter && t.member!=='todos') return true;
-  // filtro principal
-  if(filter==='all')return false;
-  if(filter==='pending')return state[t.id]===ST.DONE;
-  if(filter==='t3')return tp!=='t3';
-  if(filter==='t4')return tp!=='t4';
-  return t.role!==filter;
+// ── filtros ──────────────────────────────────────────────────────────────────
+function filterHides(t){
+  const roleOk = filter==='all'||filter==='pending'||(t.role===filter);
+  const stOk   = filter!=='pending'||(state[t.id]!==ST.DONE);
+  const memOk  = memberF==='all'||(t.member===memberF);
+  return !(roleOk&&stOk&&memOk);
 }
-
 function setFilter(btn,f){
   filter=f;
-  document.querySelectorAll('.toolbar .pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   applyFilters();
 }
-
-function setMemberFilter(btn,m){
-  memberFilter=m;
-  document.querySelectorAll('.toolbar-row .pill').forEach(p=>p.classList.remove('active'));
+function setMember(btn,m){
+  memberF=m;
+  document.querySelectorAll('.mpill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   applyFilters();
 }
-
 function applyFilters(){
   document.querySelectorAll('.task').forEach(row=>{
-    const st=row.dataset.st, role=row.dataset.role, tp=row.dataset.tp, mem=row.dataset.member||'todos';
-    let show=true;
-    // membro
-    if(memberFilter!=='todos' && mem!==memberFilter && mem!=='todos') show=false;
-    // papel/tópico
-    if(show){
-      if(filter==='pending') show=st!==ST.DONE;
-      else if(filter==='t3') show=tp==='t3';
-      else if(filter==='t4') show=tp==='t4';
-      else if(filter!=='all') show=role===filter;
-    }
-    row.classList.toggle('hidden',!show);
+    const role=row.dataset.role, st=row.dataset.st, mem=row.dataset.member;
+    const roleOk=filter==='all'||filter==='pending'||role===filter;
+    const stOk=filter!=='pending'||st!==ST.DONE;
+    const memOk=memberF==='all'||mem===memberF;
+    row.classList.toggle('hidden',!(roleOk&&stOk&&memOk));
   });
 }
 
+// ── stats ────────────────────────────────────────────────────────────────────
 function updateStats(){
   let done=0,prog=0,todo=0,pts=0;
   sections.forEach(s=>s.tasks.forEach(t=>{
@@ -575,7 +690,7 @@ function updateStats(){
   document.getElementById('bar-prog').style.width=pp+'%';
 }
 
-// ── modo líder ────────────────────────────────────────────────
+// ── modo líder ───────────────────────────────────────────────────────────────
 function toggleLeader(){
   if(isLeader){lockLeader();return;}
   document.getElementById('overlay').classList.add('show');
@@ -618,6 +733,7 @@ function lockLeader(){
   document.querySelectorAll('.state-sel').forEach(s=>s.classList.add('locked'));
 }
 
+// ── boot ─────────────────────────────────────────────────────────────────────
 (async()=>{
   await loadState();
   initState();
